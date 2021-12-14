@@ -12,7 +12,11 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <fileType name="Matlab File"
+                  implementationClass="com.github.gt.matlab.language.MatlabFileType"
+                  fieldName="INSTANCE"
+                  language="Matlab"
+                  extensions="m"/>
     </extensions>
 
     <actions>
