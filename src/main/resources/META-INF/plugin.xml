@@ -1,0 +1,21 @@
+<idea-plugin>
+    <id>com.github.guillaume.taffin.matlab-intellij</id>
+    <name>Matlab</name>
+    <vendor email="guillaume.taffinjob@gmail.com" url="https://github.com/GuillaumeTaffin/matlab-intellij">Guillaume Taffin</vendor>
+
+    <description><![CDATA[
+    Full Matlab language support for Jetbrains IDEs.
+    ]]></description>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
