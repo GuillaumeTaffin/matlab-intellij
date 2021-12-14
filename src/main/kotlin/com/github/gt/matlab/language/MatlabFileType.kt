@@ -14,6 +14,6 @@ class MatlabFileType private constructor() : LanguageFileType(MatlabLanguage.INS
 
     override fun getDefaultExtension() = "m"
 
-    override fun getIcon() = MatlabPluginIcons.matlabIcon
+    override fun getIcon() = Icons.Matlab
 
 }
