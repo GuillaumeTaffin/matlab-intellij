@@ -16,17 +16,16 @@ plugins {
 group = properties("pluginGroup").get()
 version = properties("pluginVersion").get()
 
-// Configure project's dependencies
+sourceSets["main"].java.srcDirs("src/main/gen")
+
 repositories {
     mavenCentral()
 }
 
-// Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 dependencies {
 //    implementation(libs.annotations)
 }
 
-// Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.
 kotlin {
     @Suppress("UnstableApiUsage")
     jvmToolchain {

@@ -1,9 +1,9 @@
-package com.github.guillaumetaffin.matlabintellij.services
+package com.github.guillaumetaffin.intellij.matlab.services
 
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project
-import com.github.guillaumetaffin.matlabintellij.MyBundle
+import com.github.guillaumetaffin.intellij.matlab.MyBundle
 
 @Service(Service.Level.PROJECT)
 class MyProjectService(project: Project) {

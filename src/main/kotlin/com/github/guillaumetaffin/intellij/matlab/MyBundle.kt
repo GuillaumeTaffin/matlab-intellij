@@ -1,4 +1,4 @@
-package com.github.guillaumetaffin.matlabintellij
+package com.github.guillaumetaffin.intellij.matlab
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls
