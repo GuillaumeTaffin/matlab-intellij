@@ -19,11 +19,18 @@
   generateTokens=false
 
 //  extends(".*type_ref")=type_ref
-//  extends(".*value_expr")=value_expr
+  extends(".*value_expr")=value_expr
 
   tokens=[
+    EQUAL="="
     SEMICOLON=";"
-//    ID="regexp:_?([a-zA-Z][a-zA-Z_0-9]*)?"
+    PLUS="+"
+    MINUS="-"
+    MUL="*"
+    DIV="/"
+    OPEN_PARENS="("
+    CLOSE_PARENS=")"
+    ID="regexp:[a-zA-Z][a-zA-Z_0-9]*"
     INT_LITERAL="regexp:[0-9][0-9_]*"
 //    STRING_LITERAL='regexp:\"([^\"\r\n]|(\\\"))*\"'
 //    LINE_COMMENT="regexp://.*"
@@ -37,4 +44,25 @@ matlabFile ::= top_level_item? (statement_separator top_level_item?)*
 
 statement_separator ::= ";" | LINE_BREAK
 
-top_level_item ::= INT_LITERAL
+top_level_item ::= binding_statement
+    | value_expr
+
+binding_statement ::= ID "=" value_expr
+
+value_expr ::= composed_value_expr_group
+    | primary_value_expr_group
+
+private composed_value_expr_group ::= math_value_expr
+
+private primary_value_expr_group ::= func_call_value_expr
+    | literal_value_expr
+
+math_value_expr ::= value_expr math_operator value_expr
+
+func_call_value_expr ::= ref_id "(" value_expr ")"
+
+ref_id ::= ID
+
+literal_value_expr ::= ref_id | INT_LITERAL
+
+math_operator ::= "+" | "-" | "*" | "/"

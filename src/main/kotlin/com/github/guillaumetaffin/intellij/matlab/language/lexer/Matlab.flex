@@ -25,7 +25,7 @@ import static com.github.guillaumetaffin.intellij.matlab.language.lexer.tokens.T
 HORIZONTAL_WHITESPACE=[ \t\f]+
 LINE_BREAK=[\n\r]+
 
-//ID=_?([a-zA-Z][a-zA-Z_0-9]*)?
+ID=[a-zA-Z][a-zA-Z_0-9]*
 INT_LITERAL=[0-9][0-9_]*
 //STRING_LITERAL=\"([^\"\r\n]|(\\\"))*\"
 //LINE_COMMENT="//".*
@@ -34,6 +34,15 @@ INT_LITERAL=[0-9][0-9_]*
 %%
 <YYINITIAL> {
   ";"                          { return SEMICOLON; }
+  "="                          { return EQUAL; }
+  "+"                          { return PLUS; }
+  "-"                          { return MINUS; }
+  "*"                          { return MUL; }
+  "/"                          { return DIV; }
+  "("                          { return OPEN_PARENS; }
+  ")"                          { return CLOSE_PARENS; }
+
+  {ID}                         { return ID; }
 
   {INT_LITERAL}                { return INT_LITERAL; }
 
