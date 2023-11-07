@@ -33,6 +33,7 @@
     OPEN_BRACKET="["
     CLOSE_BRACKET="]"
     COMMA=","
+    SINGLE_QUOTE="'"
     ID="regexp:[a-zA-Z][a-zA-Z_0-9]*"
     INT_LITERAL="regexp:[0-9][0-9_]*"
 //    STRING_LITERAL='regexp:\"([^\"\r\n]|(\\\"))*\"'
@@ -52,13 +53,19 @@ top_level_item ::= binding_statement
 
 binding_statement ::= ID "=" value_expr
 
-value_expr ::= composed_value_expr_group
+value_expr ::= unary_value_expr_group
+    | composed_value_expr_group
     | primary_value_expr_group
+
+
+private unary_value_expr_group ::= transpose_value_expr
 
 private composed_value_expr_group ::= math_value_expr
 
 private primary_value_expr_group ::= func_call_value_expr
     | literal_value_expr
+
+transpose_value_expr ::= value_expr "'"
 
 math_value_expr ::= value_expr math_operator value_expr
 

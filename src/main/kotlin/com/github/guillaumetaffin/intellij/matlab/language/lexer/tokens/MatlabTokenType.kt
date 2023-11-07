@@ -33,6 +33,8 @@ object Tokens {
     val CLOSE_BRACKET = CloseBracket
     @JvmField
     val COMMA = Comma
+    @JvmField
+    val SINGLE_QUOTE = SingleQuote
 }
 
 sealed class MatlabTokenType(debugName: String) : IElementType(debugName, MatlabLanguage) {
@@ -64,6 +66,8 @@ data object OpenBracket: MatlabTokenType("[")
 data object CloseBracket: MatlabTokenType("]")
 
 data object Comma: MatlabTokenType(",")
+
+data object SingleQuote: MatlabTokenType("'")
 
 data object LineBreak: MatlabTokenType("Line Break")
 

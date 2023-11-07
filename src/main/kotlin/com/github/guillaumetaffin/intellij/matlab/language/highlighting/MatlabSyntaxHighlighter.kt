@@ -22,9 +22,9 @@ class MatlabSyntaxHighlighter: SyntaxHighlighterBase() {
             IntLiteral -> AttributeKeys.NUMBER
             Semicolon -> AttributeKeys.SEMICOLON
             Equal, Plus, Minus, Mul, Div -> AttributeKeys.OPERATOR
-            LineBreak -> AttributeKeys.NO_HIGHLIGHTING
             OpenParens, CloseParens, OpenBracket, CloseBracket -> AttributeKeys.PARENS
             Comma -> AttributeKeys.COMMA
+            LineBreak, SingleQuote -> AttributeKeys.NO_HIGHLIGHTING
         }
         TokenType.BAD_CHARACTER -> AttributeKeys.BAD_CHARACTER
         else -> AttributeKeys.NO_HIGHLIGHTING
