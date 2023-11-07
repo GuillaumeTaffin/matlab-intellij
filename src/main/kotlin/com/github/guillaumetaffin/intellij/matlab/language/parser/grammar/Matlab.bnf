@@ -62,7 +62,8 @@ private primary_value_expr_group ::= func_call_value_expr
 
 math_value_expr ::= value_expr math_operator value_expr
 
-func_call_value_expr ::= ref_id "(" value_expr ")"
+func_call_value_expr ::= ref_id "(" func_call_parameters  ")"
+func_call_parameters ::= value_expr ("," value_expr)*
 
 literal_value_expr ::= ref_id
     | array_literal
