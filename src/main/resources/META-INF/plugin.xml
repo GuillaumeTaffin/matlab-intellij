@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.guillaumetaffin.matlabintellij</id>
-    <name>matlab-intellij Template</name>
+    <name>MATLAB</name>
     <vendor>guillaumetaffin</vendor>
 
     <depends>com.intellij.modules.platform</depends>
@@ -9,10 +9,27 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.guillaumetaffin.matlabintellij.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <fileType name="Matlab File"
+                  implementationClass="com.github.guillaumetaffin.intellij.matlab.language.MatlabFileType"
+                  fieldName="INSTANCE"
+                  language="Matlab"
+                  extensions="m"
+        />
+
+        <lang.parserDefinition language="Matlab"
+                               implementationClass="com.github.guillaumetaffin.intellij.matlab.language.parser.MatlabParserDefinition"
+        />
+
+        <lang.syntaxHighlighterFactory language="Matlab"
+                                       implementationClass="com.github.guillaumetaffin.intellij.matlab.language.highlighting.MatlabSyntaxHighlighterFactory"
+        />
+
+        <toolWindow factoryClass="com.github.guillaumetaffin.intellij.matlab.toolWindow.MyToolWindowFactory"
+                    id="MyToolWindow"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.guillaumetaffin.matlabintellij.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
+        <listener class="com.github.guillaumetaffin.intellij.matlab.listeners.MyApplicationActivationListener"
+                  topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
 </idea-plugin>

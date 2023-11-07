@@ -1,0 +1,40 @@
+{
+  parserClass="com.github.guillaumetaffin.intellij.matlab.language.parser.MatlabParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Matlab"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.github.guillaumetaffin.intellij.matlab.language.parser.psi"
+  psiImplPackage="com.github.guillaumetaffin.intellij.matlab.language.parser.psi.impl"
+
+  elementTypeHolderClass="com.github.guillaumetaffin.intellij.matlab.language.parser.psi.MatlabTypes"
+  elementTypeClass="com.github.guillaumetaffin.intellij.matlab.language.parser.psi.MatlabElementType"
+  tokenTypeClass="com.github.guillaumetaffin.intellij.matlab.language.lexer.tokens.MatlabTokenType"
+
+  parserImports=[
+    "static com.github.guillaumetaffin.intellij.matlab.language.lexer.tokens.Tokens.*"
+  ]
+
+  generateTokens=false
+
+//  extends(".*type_ref")=type_ref
+//  extends(".*value_expr")=value_expr
+
+  tokens=[
+    SEMICOLON=";"
+//    ID="regexp:_?([a-zA-Z][a-zA-Z_0-9]*)?"
+    INT_LITERAL="regexp:[0-9][0-9_]*"
+//    STRING_LITERAL='regexp:\"([^\"\r\n]|(\\\"))*\"'
+//    LINE_COMMENT="regexp://.*"
+//    BLOCK_COMMENT="regexp:/\*[\s\S]*?\*/"
+    LINE_BREAK="regexp:[\n\r]+"
+    WHITESPACE="regexp:[ \t\f]+"
+  ]
+}
+
+matlabFile ::= top_level_item? (statement_separator top_level_item?)*
+
+statement_separator ::= ";" | LINE_BREAK
+
+top_level_item ::= INT_LITERAL

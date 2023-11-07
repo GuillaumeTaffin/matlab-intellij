@@ -1,4 +1,4 @@
-package com.github.guillaumetaffin.matlabintellij.listeners
+package com.github.guillaumetaffin.intellij.matlab.listeners
 
 import com.intellij.openapi.application.ApplicationActivationListener
 import com.intellij.openapi.diagnostic.thisLogger
