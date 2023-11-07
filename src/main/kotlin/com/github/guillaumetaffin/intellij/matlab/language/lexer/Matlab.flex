@@ -49,6 +49,7 @@ INT_LITERAL=[0-9][0-9_]*
   "]"                          { return CLOSE_BRACKET; }
   ","                          { return COMMA; }
   "'"                          { return SINGLE_QUOTE; }
+  ":"                          { return COLON; }
 
   {ID}                         { return ID; }
 

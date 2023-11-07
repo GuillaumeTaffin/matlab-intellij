@@ -21,7 +21,7 @@ class MatlabSyntaxHighlighter: SyntaxHighlighterBase() {
             Identifier -> AttributeKeys.IDENTIFIER
             IntLiteral -> AttributeKeys.NUMBER
             Semicolon -> AttributeKeys.SEMICOLON
-            Equal, Plus, Minus, Mul, Div, Pow, ElementWiseDiv, ElementWiseMul, ElementWisePow  -> AttributeKeys.OPERATOR
+            Equal, Plus, Minus, Mul, Div, Pow, ElementWiseDiv, ElementWiseMul, ElementWisePow, Colon  -> AttributeKeys.OPERATOR
             OpenParens, CloseParens, OpenBracket, CloseBracket-> AttributeKeys.PARENS
             Comma -> AttributeKeys.COMMA
             LineBreak, SingleQuote -> AttributeKeys.NO_HIGHLIGHTING

@@ -43,6 +43,8 @@ object Tokens {
     val COMMA = Comma
     @JvmField
     val SINGLE_QUOTE = SingleQuote
+    @JvmField
+    val COLON = Colon
 }
 
 sealed class MatlabTokenType(debugName: String) : IElementType(debugName, MatlabLanguage) {
@@ -84,6 +86,8 @@ data object CloseBracket: MatlabTokenType("]")
 data object Comma: MatlabTokenType(",")
 
 data object SingleQuote: MatlabTokenType("'")
+
+data object Colon: MatlabTokenType(":")
 
 data object LineBreak: MatlabTokenType("Line Break")
 
