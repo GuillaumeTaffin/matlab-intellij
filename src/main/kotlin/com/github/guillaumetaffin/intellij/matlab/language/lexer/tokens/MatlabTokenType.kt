@@ -27,6 +27,12 @@ object Tokens {
     val OPEN_PARENS = OpenParens
     @JvmField
     val CLOSE_PARENS = CloseParens
+    @JvmField
+    val OPEN_BRACKET = OpenBracket
+    @JvmField
+    val CLOSE_BRACKET = CloseBracket
+    @JvmField
+    val COMMA = Comma
 }
 
 sealed class MatlabTokenType(debugName: String) : IElementType(debugName, MatlabLanguage) {
@@ -52,6 +58,12 @@ data object Div: MatlabTokenType("/")
 data object OpenParens: MatlabTokenType("(")
 
 data object CloseParens: MatlabTokenType(")")
+
+data object OpenBracket: MatlabTokenType("[")
+
+data object CloseBracket: MatlabTokenType("]")
+
+data object Comma: MatlabTokenType(",")
 
 data object LineBreak: MatlabTokenType("Line Break")
 

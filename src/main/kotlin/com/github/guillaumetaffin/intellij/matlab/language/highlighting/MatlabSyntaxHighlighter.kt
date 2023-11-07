@@ -23,7 +23,8 @@ class MatlabSyntaxHighlighter: SyntaxHighlighterBase() {
             Semicolon -> AttributeKeys.SEMICOLON
             Equal, Plus, Minus, Mul, Div -> AttributeKeys.OPERATOR
             LineBreak -> AttributeKeys.NO_HIGHLIGHTING
-            OpenParens, CloseParens -> AttributeKeys.PARENS
+            OpenParens, CloseParens, OpenBracket, CloseBracket -> AttributeKeys.PARENS
+            Comma -> AttributeKeys.COMMA
         }
         TokenType.BAD_CHARACTER -> AttributeKeys.BAD_CHARACTER
         else -> AttributeKeys.NO_HIGHLIGHTING
@@ -37,6 +38,7 @@ object AttributeKeys {
     val SEMICOLON = keys("SEMICOLON", Colors.SEMICOLON)
     val OPERATOR = keys("EQUAL", Colors.OPERATION_SIGN)
     val PARENS = keys("PARENS", Colors.PARENTHESES)
+    val COMMA = keys("COMMA", Colors.COMMA)
     val BAD_CHARACTER = keys("BAD CHARACTER", HighlighterColors.BAD_CHARACTER)
     val NO_HIGHLIGHTING = keys("NO HIGHLIGHTING", HighlighterColors.NO_HIGHLIGHTING)
 }
