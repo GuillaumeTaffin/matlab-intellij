@@ -24,6 +24,14 @@ object Tokens {
     @JvmField
     val DIV = Div
     @JvmField
+    val POW = Pow
+    @JvmField
+    val ELEMENT_WISE_MUL = ElementWiseMul
+    @JvmField
+    val ELEMENT_WISE_DIV = ElementWiseDiv
+    @JvmField
+    val ELEMENT_WISE_POW = ElementWisePow
+    @JvmField
     val OPEN_PARENS = OpenParens
     @JvmField
     val CLOSE_PARENS = CloseParens
@@ -56,6 +64,14 @@ data object Minus: MatlabTokenType("-")
 data object Mul: MatlabTokenType("*")
 
 data object Div: MatlabTokenType("/")
+
+data object Pow: MatlabTokenType("^")
+
+data object ElementWiseMul: MatlabTokenType(".*")
+
+data object ElementWiseDiv: MatlabTokenType("./")
+
+data object ElementWisePow: MatlabTokenType(".^")
 
 data object OpenParens: MatlabTokenType("(")
 

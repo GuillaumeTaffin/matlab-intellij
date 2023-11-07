@@ -28,6 +28,10 @@
     MINUS="-"
     MUL="*"
     DIV="/"
+    POW="^"
+    ELEMENT_WISE_MUL=".*"
+    ELEMENT_WISE_DIV="./"
+    ELEMENT_WISE_POW=".^"
     OPEN_PARENS="("
     CLOSE_PARENS=")"
     OPEN_BRACKET="["
@@ -59,6 +63,7 @@ value_expr ::= unary_value_expr_group
 
 
 private unary_value_expr_group ::= transpose_value_expr
+    | unary_math_value_expr
 
 private composed_value_expr_group ::= math_value_expr
 
@@ -66,6 +71,8 @@ private primary_value_expr_group ::= func_call_value_expr
     | literal_value_expr
 
 transpose_value_expr ::= value_expr "'"
+
+unary_math_value_expr ::= "-" value_expr
 
 math_value_expr ::= value_expr math_operator value_expr
 
@@ -80,4 +87,4 @@ array_literal ::= "[" ( value_expr ("," | ";")? )* "]"
 
 ref_id ::= ID
 
-math_operator ::= "+" | "-" | "*" | "/"
+math_operator ::= "+" | "-" | "*" | "/" | "^" | ".*" | "./" | ".^"

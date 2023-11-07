@@ -39,6 +39,10 @@ INT_LITERAL=[0-9][0-9_]*
   "-"                          { return MINUS; }
   "*"                          { return MUL; }
   "/"                          { return DIV; }
+  "^"                          { return POW; }
+  ".*"                         { return ELEMENT_WISE_MUL; }
+  "./"                         { return ELEMENT_WISE_DIV; }
+  ".^"                         { return ELEMENT_WISE_POW; }
   "("                          { return OPEN_PARENS; }
   ")"                          { return CLOSE_PARENS; }
   "["                          { return OPEN_BRACKET; }
