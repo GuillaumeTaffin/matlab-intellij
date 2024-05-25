@@ -11,6 +11,8 @@ class ValidParsingTest : ParsingTestCase(
 
     fun testStringLiterals() = parsingShouldSucceed("string_literals")
 
+    fun testNumberLiterals() = parsingShouldSucceed("number_literals")
+
     private fun parsingShouldSucceed(fileName: String) {
         val loadFile = this.loadFile("$fileName.m")
         parseFile(fileName, loadFile)
