@@ -17,8 +17,11 @@
 - [x] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-This plugin adds support and integration for MATLAB inside Jetbrains' IDEs. 
+This plugin adds support and integration for MATLAB inside Jetbrains' IDEs.
+
 It aims to provide the same quality support as other languages to MATLAB, as well as providing a better IDE integration for common "state of the art" code actions and tooling.
+
+You do not need to have MATLAB installed to benefit from language features, but you will need to have it installed for benefitting from all of them.
 <!-- Plugin description end -->
 
 ## Installation
