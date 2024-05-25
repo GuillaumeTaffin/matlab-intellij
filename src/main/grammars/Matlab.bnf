@@ -1,0 +1,30 @@
+{
+  parserClass="com.github.guillaumetaffin.matlabintellij.lang.parser.MatlabParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Matlab"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.github.guillaumetaffin.matlabintellij.lang.psi"
+  psiImplPackage="com.github.guillaumetaffin.matlabintellij.lang.psi.impl"
+
+  elementTypeHolderClass="com.github.guillaumetaffin.matlabintellij.lang.psi.MatlabTypes"
+  elementTypeClass="com.github.guillaumetaffin.matlabintellij.lang.psi.MatlabElementType"
+  tokenTypeClass="com.github.guillaumetaffin.matlabintellij.lang.psi.MatlabTokenType"
+
+  parserImports=[
+        "static com.github.guillaumetaffin.matlabintellij.lang.psi.Tokens.*"
+  ]
+
+  generateTokens=false
+
+  tokens = [
+    SEMICOLON=";"
+    STRING_LITERAL="regexp:'([^']|'')*'|\"([^\"]|\"\")*\""
+    WHITESPACE="regexp:\s+"
+  ]
+}
+
+root ::= statement*
+
+statement ::= STRING_LITERAL

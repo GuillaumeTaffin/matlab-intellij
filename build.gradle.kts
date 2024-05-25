@@ -1,5 +1,6 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
@@ -11,6 +12,7 @@ plugins {
     alias(libs.plugins.changelog) // Gradle Changelog Plugin
     alias(libs.plugins.qodana) // Gradle Qodana Plugin
     alias(libs.plugins.kover) // Gradle Kover Plugin
+    alias(libs.plugins.grammarkit)
 }
 
 group = properties("pluginGroup").get()
@@ -29,6 +31,11 @@ dependencies {
 // Set the JVM language level used to build the project.
 kotlin {
     jvmToolchain(17)
+}
+
+grammarKit {
+    jflexRelease.set(properties("jflexVersion"))
+    grammarKitRelease.set(properties("grammarKitVersion"))
 }
 
 // Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
@@ -58,13 +65,34 @@ kover {
     }
 }
 
+sourceSets["main"].java.srcDirs("src/main/gen")
+
 tasks {
     wrapper {
         gradleVersion = properties("gradleVersion").get()
     }
 
+    generateLexer {
+        sourceFile.set(file("src/main/grammars/Matlab.flex"))
+        targetOutputDir.set(file("src/main/gen/com/github/guillaumetaffin/matlabintellij/lang"))
+        purgeOldFiles.set(true)
+    }
+
+    generateParser {
+        sourceFile.set(file("src/main/grammars/Matlab.bnf"))
+        targetRootOutputDir.set(file("src/main/gen"))
+        pathToParser.set("com/github/guillaumetaffin/matlabintellij/lang/MatlabParser.java")
+        pathToPsiRoot.set("com/github/guillaumetaffin/matlabintellij/lang/psi")
+        purgeOldFiles.set(true)
+    }
+
+    withType<KotlinCompile> {
+        dependsOn(generateLexer, generateParser)
+    }
+
     runIde {
         autoReloadPlugins.set(true)
+        dependsOn(generateLexer, generateParser)
     }
 
     patchPluginXml {
@@ -77,7 +105,7 @@ tasks {
             val start = "<!-- Plugin description -->"
             val end = "<!-- Plugin description end -->"
 
-            with (it.lines()) {
+            with(it.lines()) {
                 if (!containsAll(listOf(start, end))) {
                     throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
                 }
@@ -120,6 +148,9 @@ tasks {
         // The pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
-        channels = properties("pluginVersion").map { listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" }) }
+        channels = properties("pluginVersion").map {
+            listOf(
+                it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" })
+        }
     }
 }

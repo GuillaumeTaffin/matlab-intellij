@@ -18,6 +18,16 @@
                 language="MATLAB"
                 extensions="m"
         />
+
+        <lang.parserDefinition
+                language="MATLAB"
+                implementationClass="com.github.guillaumetaffin.matlabintellij.lang.MatlabParserDefinition"
+        />
+
+        <lang.syntaxHighlighterFactory
+                language="MATLAB"
+                implementationClass="com.github.guillaumetaffin.matlabintellij.lang.MatlabSyntaxHighlighterFactory"
+        />
     </extensions>
 
     <applicationListeners>

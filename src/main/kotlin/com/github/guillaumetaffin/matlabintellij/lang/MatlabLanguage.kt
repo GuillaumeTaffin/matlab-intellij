@@ -31,4 +31,7 @@ class MatlabFileType : LanguageFileType(MatlabLanguage) {
     override fun getIcon(): Icon {
         return MatlabIcons.MATLAB_FILE_ICON
     }
+
 }
+
+val matlabFileType = MatlabFileType()
