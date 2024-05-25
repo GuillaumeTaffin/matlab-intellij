@@ -24,6 +24,12 @@ object Tokens {
     val IMAGINARY_LITERAL = ImaginaryLiteral
 
     @JvmField
+    val LINE_COMMENT = LineComment
+
+    @JvmField
+    val BLOCK_COMMENT = BlockComment
+
+    @JvmField
     val INF = InfLiteral
 
     @JvmField
@@ -75,6 +81,16 @@ data object NanLiteral : MatlabTokenType("NAN") {
         get() = AttributeKeys.NAN_LITERAL
 }
 
+data object LineComment : MatlabTokenType("COMMENT") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.LINE_COMMENT
+}
+
+data object BlockComment : MatlabTokenType("BLOCK COMMENT") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.BLOCK_COMMENT
+}
+
 object AttributeKeys {
     val STRING_LITERAL = keys("STRING", DefaultLanguageHighlighterColors.STRING)
     val DECIMAL_LITERAL = keys("DECIMAL", DefaultLanguageHighlighterColors.NUMBER)
@@ -83,6 +99,8 @@ object AttributeKeys {
     val IMAGINARY_LITERAL = keys("IMAGINARY", DefaultLanguageHighlighterColors.NUMBER)
     val INF_LITERAL = keys("INF", DefaultLanguageHighlighterColors.KEYWORD)
     val NAN_LITERAL = keys("NAN", DefaultLanguageHighlighterColors.KEYWORD)
+    val LINE_COMMENT = keys("COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
+    val BLOCK_COMMENT = keys("BLOCK_COMMENT", DefaultLanguageHighlighterColors.BLOCK_COMMENT)
 }
 
 private fun keys(text: String, color: TextAttributesKey) = arrayOf(createTextAttributesKey(text, color))

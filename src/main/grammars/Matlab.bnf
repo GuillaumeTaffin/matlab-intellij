@@ -20,14 +20,15 @@
 
   tokens = [
     SEMICOLON=";"
+    INF="Inf"
+    NAN="NaN"
     STRING_LITERAL="regexp:'([^']|'')*'|\"([^\"]|\"\")*\""
-
     DECIMAL_LITERAL="regexp:\b(\d+)(\.\d+)?([eE][+-]?\d+)?\b"
     HEXADECIMAL_LITERAL="regexp:\b0[xX][0-9a-fA-F]+\b"
     BINARY_LITERAL="regexp:\b0[bB][01]+\b"
     IMAGINARY_LITERAL="regexp:\b(\d+)?(\.\d+)?([eE][+-]?\d+)?[ij]\b"
-    INF="Inf"
-    NAN="NaN"
+    LINE_COMMENT="regexp:%.*"
+    MULTI_LINE_COMMENT="regexp:%\{(.|\n)*?%}"
 
     WHITESPACE="regexp:\s+"
   ]
@@ -35,7 +36,8 @@
 
 root ::= statement*
 
-statement ::= STRING_LITERAL | number_literal
+statement ::= STRING_LITERAL
+ | number_literal
 
 
 private number_literal ::=  DECIMAL_LITERAL | HEXADECIMAL_LITERAL | BINARY_LITERAL | IMAGINARY_LITERAL | "Inf" | "NaN"

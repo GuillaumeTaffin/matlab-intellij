@@ -2,7 +2,6 @@ package com.github.guillaumetaffin.matlabintellij.lang;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
-import com.github.guillaumetaffin.matlabintellij.lang.psi.MatlabTypes;
 import com.intellij.psi.TokenType;
 import static com.github.guillaumetaffin.matlabintellij.lang.psi.Tokens.*;
 
@@ -24,6 +23,8 @@ BINARY_LITERAL=0[bB][01]+
 IMAGINARY_LITERAL=(\d+)?(\.\d+)?([eE][+-]?\d+)?[ij]
 INF="Inf"
 NAN="NaN"
+LINE_COMMENT=%.*
+MULTI_LINE_COMMENT=%\{(.|\n)*?%}
 
 %%
 
@@ -34,6 +35,8 @@ NAN="NaN"
     {HEXADECIMAL_LITERAL} { return HEXADECIMAL_LITERAL; }
     {BINARY_LITERAL}      { return BINARY_LITERAL; }
     {IMAGINARY_LITERAL}   { return IMAGINARY_LITERAL; }
+    {LINE_COMMENT}        { return LINE_COMMENT; }
+    {MULTI_LINE_COMMENT}  { return BLOCK_COMMENT; }
     {INF}                 { return INF; }
     {NAN}                 { return NAN; }
 }

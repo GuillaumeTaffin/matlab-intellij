@@ -13,6 +13,8 @@ class ValidParsingTest : ParsingTestCase(
 
     fun testNumberLiterals() = parsingShouldSucceed("number_literals")
 
+    fun testComments() = parsingShouldSucceed("comments")
+
     private fun parsingShouldSucceed(fileName: String) {
         val loadFile = this.loadFile("$fileName.m")
         parseFile(fileName, loadFile)
