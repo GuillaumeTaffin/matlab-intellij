@@ -9,10 +9,19 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.guillaumetaffin.matlabintellij.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <toolWindow factoryClass="com.github.guillaumetaffin.matlabintellij.toolWindow.MyToolWindowFactory"
+                    id="MyToolWindow"/>
+
+        <fileType
+                name="Matlab File"
+                implementationClass="com.github.guillaumetaffin.matlabintellij.lang.MatlabFileType"
+                language="MATLAB"
+                extensions="m"
+        />
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.guillaumetaffin.matlabintellij.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
+        <listener class="com.github.guillaumetaffin.matlabintellij.listeners.MyApplicationActivationListener"
+                  topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
 </idea-plugin>
