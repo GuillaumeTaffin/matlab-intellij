@@ -40,6 +40,13 @@ MULTI_LINE_COMMENT=%\{(.|\n)*?%}
     ";"                   { return SEMICOLON; }
     "true"                { return TRUE; }
     "false"               { return FALSE; }
+    "=="                  { return EQ; }
+    "~="                  { return NOT_EQ; }
+    "<"                   { return LT; }
+    "<="                  { return LTEQ; }
+    ">="                  { return GTEQ; }
+    ">"                   { return GT; }
+
 }
 
 [^]                    { return TokenType.BAD_CHARACTER; }

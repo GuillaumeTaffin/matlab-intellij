@@ -43,6 +43,24 @@ object Tokens {
 
     @JvmField
     val FALSE = False
+
+    @JvmField
+    val EQ = Eq
+
+    @JvmField
+    val NOT_EQ = NotEq
+
+    @JvmField
+    val LT = Lt
+
+    @JvmField
+    val LTEQ = Lteq
+
+    @JvmField
+    val GT = Gt
+
+    @JvmField
+    val GTEQ = Gteq
 }
 
 sealed class MatlabTokenType(debugName: String) :
@@ -115,6 +133,37 @@ data object False : MatlabTokenType("FALSE") {
         get() = AttributeKeys.KEYWORD
 }
 
+
+data object Eq : MatlabTokenType("EQ") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object NotEq : MatlabTokenType("NOT_EQ") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Lt : MatlabTokenType("LT") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Lteq : MatlabTokenType("LTEQ") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Gt : MatlabTokenType("GT") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Gteq : MatlabTokenType("GTEQ") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
 object AttributeKeys {
     val STRING_LITERAL = keys("STRING", DefaultLanguageHighlighterColors.STRING)
     val SEMICOLON = keys("STRING", DefaultLanguageHighlighterColors.SEMICOLON)
@@ -125,6 +174,7 @@ object AttributeKeys {
     val KEYWORD = keys("INF", DefaultLanguageHighlighterColors.KEYWORD)
     val LINE_COMMENT = keys("COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
     val BLOCK_COMMENT = keys("BLOCK_COMMENT", DefaultLanguageHighlighterColors.BLOCK_COMMENT)
+    val OPERATOR = keys("OPERATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
 }
 
 private fun keys(text: String, color: TextAttributesKey) = arrayOf(createTextAttributesKey(text, color))

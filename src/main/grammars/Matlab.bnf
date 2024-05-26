@@ -17,6 +17,7 @@
   ]
 
   generateTokens=false
+  extends(".*_expr")=expr
 
   tokens = [
     SEMICOLON=";"
@@ -24,6 +25,12 @@
     NAN="NaN"
     TRUE="true"
     FALSE="false"
+    EQ="=="
+    NOT_EQ="~="
+    LTEQ="<="
+    GTEQ=">="
+    LT="<"
+    GT=">"
     STRING_LITERAL="regexp:'([^']|'')*'|\"([^\"]|\"\")*\""
     DECIMAL_LITERAL="regexp:\b(\d+)(\.\d+)?([eE][+-]?\d+)?\b"
     HEXADECIMAL_LITERAL="regexp:\b0[xX][0-9a-fA-F]+\b"
@@ -38,10 +45,15 @@
 
 root ::= (statement (";" statement)*)*
 
-statement ::= literal_expr
+statement ::= expr
 
+expr ::= binary_expr | literal_expr
+binary_expr ::= expr binary_operator expr
+literal_expr ::= STRING_LITERAL | number_literal | boolean_literal
 
 // Literals
-private literal_expr ::= STRING_LITERAL | number_literal | boolean_literal
 private number_literal ::=  DECIMAL_LITERAL | HEXADECIMAL_LITERAL | BINARY_LITERAL | IMAGINARY_LITERAL | "Inf" | "NaN"
 private boolean_literal ::= "true" | "false"
+// Operators
+binary_operator ::= relational_operator
+private relational_operator ::= "==" | "~=" | "<=" | ">=" | "<" | ">"
