@@ -102,9 +102,6 @@ object Tokens {
     val OR = Or
 
     @JvmField
-    val XOR = Xor
-
-    @JvmField
     val EQUALS = AssignmentOperator
 
     @JvmField
@@ -278,11 +275,6 @@ data object Or : MatlabTokenType("OR") {
         get() = AttributeKeys.OPERATOR
 }
 
-data object Xor : MatlabTokenType("XOR") {
-    override val highlight: Array<TextAttributesKey>
-        get() = AttributeKeys.OPERATOR
-}
-
 data object AssignmentOperator : MatlabTokenType("EQUALS") {
     override val highlight: Array<TextAttributesKey>
         get() = AttributeKeys.OPERATOR
@@ -297,7 +289,7 @@ data object Identifier : MatlabTokenType("IDENTIFIER") {
 object AttributeKeys {
     val IDENTIFIER = keys("IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER)
     val STRING_LITERAL = keys("STRING", DefaultLanguageHighlighterColors.STRING)
-    val SEMICOLON = keys("STRING", DefaultLanguageHighlighterColors.SEMICOLON)
+    val SEMICOLON = keys("SEMICOLON", DefaultLanguageHighlighterColors.SEMICOLON)
     val DECIMAL_LITERAL = keys("DECIMAL", DefaultLanguageHighlighterColors.NUMBER)
     val HEXADECIMAL_LITERAL = keys("HEXADECIMAL", DefaultLanguageHighlighterColors.NUMBER)
     val BINARY_LITERAL = keys("BINARY", DefaultLanguageHighlighterColors.NUMBER)

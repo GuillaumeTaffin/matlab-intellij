@@ -25,6 +25,8 @@ class ValidParsingTest : ParsingTestCase(
 
     fun testAssignStatements() = parsingShouldSucceed("assign_statements")
 
+    fun testVariableReference() = parsingShouldSucceed("variable_reference")
+
 
     private fun parsingShouldSucceed(fileName: String) {
         val loadFile = this.loadFile("$fileName.m")
