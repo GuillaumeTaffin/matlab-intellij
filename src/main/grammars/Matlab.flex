@@ -23,18 +23,11 @@ BINARY_LITERAL=0[bB][01]+
 IMAGINARY_LITERAL=(\d+)?(\.\d+)?([eE][+-]?\d+)?[ij]
 LINE_COMMENT=%.*
 MULTI_LINE_COMMENT=%\{(.|\n)*?%}
+IDENTIFIER=[a-zA-Z_][a-zA-Z0-9_]*
 
 %%
 
 <YYINITIAL> {
-    {WHITE_SPACE}         { return TokenType.WHITE_SPACE; }
-    {STRING_LITERAL}      { return STRING_LITERAL; }
-    {DECIMAL_LITERAL}     { return DECIMAL_LITERAL; }
-    {HEXADECIMAL_LITERAL} { return HEXADECIMAL_LITERAL; }
-    {BINARY_LITERAL}      { return BINARY_LITERAL; }
-    {IMAGINARY_LITERAL}   { return IMAGINARY_LITERAL; }
-    {LINE_COMMENT}        { return LINE_COMMENT; }
-    {MULTI_LINE_COMMENT}  { return BLOCK_COMMENT; }
     "Inf"                 { return INF; }
     "NaN"                 { return NAN; }
     ";"                   { return SEMICOLON; }
@@ -59,7 +52,16 @@ MULTI_LINE_COMMENT=%\{(.|\n)*?%}
     "||"                  { return OR_OR; }
     "&"                   { return AND; }
     "|"                   { return OR; }
-    "xor"                 { return XOR; }
+    "="                   { return EQUALS; }
+    {STRING_LITERAL}      { return STRING_LITERAL; }
+    {DECIMAL_LITERAL}     { return DECIMAL_LITERAL; }
+    {HEXADECIMAL_LITERAL} { return HEXADECIMAL_LITERAL; }
+    {BINARY_LITERAL}      { return BINARY_LITERAL; }
+    {IMAGINARY_LITERAL}   { return IMAGINARY_LITERAL; }
+    {LINE_COMMENT}        { return LINE_COMMENT; }
+    {MULTI_LINE_COMMENT}  { return BLOCK_COMMENT; }
+    {IDENTIFIER}          { return IDENTIFIER; }
+    {WHITE_SPACE}         { return TokenType.WHITE_SPACE; }
 
 
 }

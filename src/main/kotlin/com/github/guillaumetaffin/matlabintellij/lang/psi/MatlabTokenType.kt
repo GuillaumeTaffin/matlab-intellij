@@ -104,6 +104,12 @@ object Tokens {
     @JvmField
     val XOR = Xor
 
+    @JvmField
+    val EQUALS = AssignmentOperator
+
+    @JvmField
+    val IDENTIFIER = Identifier
+
 }
 
 sealed class MatlabTokenType(debugName: String) :
@@ -277,8 +283,19 @@ data object Xor : MatlabTokenType("XOR") {
         get() = AttributeKeys.OPERATOR
 }
 
+data object AssignmentOperator : MatlabTokenType("EQUALS") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Identifier : MatlabTokenType("IDENTIFIER") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.IDENTIFIER
+}
+
 
 object AttributeKeys {
+    val IDENTIFIER = keys("IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER)
     val STRING_LITERAL = keys("STRING", DefaultLanguageHighlighterColors.STRING)
     val SEMICOLON = keys("STRING", DefaultLanguageHighlighterColors.SEMICOLON)
     val DECIMAL_LITERAL = keys("DECIMAL", DefaultLanguageHighlighterColors.NUMBER)

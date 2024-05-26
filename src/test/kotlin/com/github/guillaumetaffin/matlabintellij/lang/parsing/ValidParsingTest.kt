@@ -23,6 +23,9 @@ class ValidParsingTest : ParsingTestCase(
 
     fun testLogicalOperators() = parsingShouldSucceed("logical_operators")
 
+    fun testAssignStatements() = parsingShouldSucceed("assign_statements")
+
+
     private fun parsingShouldSucceed(fileName: String) {
         val loadFile = this.loadFile("$fileName.m")
         parseFile(fileName, loadFile)

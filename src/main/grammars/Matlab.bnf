@@ -44,6 +44,8 @@
     OR_OR="||"
     AND="&"
     OR="|"
+    EQUALS="="
+    IDENTIFIER="regexp:[a-zA-Z_][a-zA-Z0-9_]*"
     STRING_LITERAL="regexp:'([^']|'')*'|\"([^\"]|\"\")*\""
     DECIMAL_LITERAL="regexp:\b(\d+)(\.\d+)?([eE][+-]?\d+)?\b"
     HEXADECIMAL_LITERAL="regexp:\b0[xX][0-9a-fA-F]+\b"
@@ -56,9 +58,12 @@
   ]
 }
 
-root ::= (statement (";" statement)*)*
+root ::= (statement_with_semi | statement)*
+
+statement_with_semi ::= statement ";"
 
 statement ::= expr
+       | assign_statement
 
 expr ::= primary_group
        | unary_group
@@ -68,6 +73,9 @@ expr ::= primary_group
        | relational_group
        | logical_and_group
        | logical_or_group
+
+assign_statement ::= id "=" expr
+id ::= IDENTIFIER
 
 
 private primary_group ::= literal_expr
