@@ -21,11 +21,8 @@ DECIMAL_LITERAL=(\d+)(\.\d+)?([eE][+-]?\d+)?
 HEXADECIMAL_LITERAL=0[xX][0-9a-fA-F]+
 BINARY_LITERAL=0[bB][01]+
 IMAGINARY_LITERAL=(\d+)?(\.\d+)?([eE][+-]?\d+)?[ij]
-INF="Inf"
-NAN="NaN"
 LINE_COMMENT=%.*
 MULTI_LINE_COMMENT=%\{(.|\n)*?%}
-SEMICOLON=";"
 
 %%
 
@@ -38,9 +35,11 @@ SEMICOLON=";"
     {IMAGINARY_LITERAL}   { return IMAGINARY_LITERAL; }
     {LINE_COMMENT}        { return LINE_COMMENT; }
     {MULTI_LINE_COMMENT}  { return BLOCK_COMMENT; }
-    {INF}                 { return INF; }
-    {NAN}                 { return NAN; }
-    {SEMICOLON}           { return SEMICOLON; }
+    "Inf"                 { return INF; }
+    "NaN"                 { return NAN; }
+    ";"                   { return SEMICOLON; }
+    "true"                { return TRUE; }
+    "false"               { return FALSE; }
 }
 
 [^]                    { return TokenType.BAD_CHARACTER; }

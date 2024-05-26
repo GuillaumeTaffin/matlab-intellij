@@ -37,6 +37,12 @@ object Tokens {
 
     @JvmField
     val SEMICOLON = Semicolon
+
+    @JvmField
+    val TRUE = True
+
+    @JvmField
+    val FALSE = False
 }
 
 sealed class MatlabTokenType(debugName: String) :
@@ -76,12 +82,12 @@ data object ImaginaryLiteral : MatlabTokenType("IMAGINARY") {
 
 data object InfLiteral : MatlabTokenType("INF") {
     override val highlight: Array<TextAttributesKey>
-        get() = AttributeKeys.INF_LITERAL
+        get() = AttributeKeys.KEYWORD
 }
 
 data object NanLiteral : MatlabTokenType("NAN") {
     override val highlight: Array<TextAttributesKey>
-        get() = AttributeKeys.NAN_LITERAL
+        get() = AttributeKeys.KEYWORD
 }
 
 data object LineComment : MatlabTokenType("COMMENT") {
@@ -99,6 +105,16 @@ data object Semicolon : MatlabTokenType("SEMICOLON") {
         get() = AttributeKeys.SEMICOLON
 }
 
+data object True : MatlabTokenType("TRUE") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.KEYWORD
+}
+
+data object False : MatlabTokenType("FALSE") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.KEYWORD
+}
+
 object AttributeKeys {
     val STRING_LITERAL = keys("STRING", DefaultLanguageHighlighterColors.STRING)
     val SEMICOLON = keys("STRING", DefaultLanguageHighlighterColors.SEMICOLON)
@@ -106,8 +122,7 @@ object AttributeKeys {
     val HEXADECIMAL_LITERAL = keys("HEXADECIMAL", DefaultLanguageHighlighterColors.NUMBER)
     val BINARY_LITERAL = keys("BINARY", DefaultLanguageHighlighterColors.NUMBER)
     val IMAGINARY_LITERAL = keys("IMAGINARY", DefaultLanguageHighlighterColors.NUMBER)
-    val INF_LITERAL = keys("INF", DefaultLanguageHighlighterColors.KEYWORD)
-    val NAN_LITERAL = keys("NAN", DefaultLanguageHighlighterColors.KEYWORD)
+    val KEYWORD = keys("INF", DefaultLanguageHighlighterColors.KEYWORD)
     val LINE_COMMENT = keys("COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
     val BLOCK_COMMENT = keys("BLOCK_COMMENT", DefaultLanguageHighlighterColors.BLOCK_COMMENT)
 }

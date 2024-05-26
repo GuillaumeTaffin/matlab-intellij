@@ -15,6 +15,8 @@ class ValidParsingTest : ParsingTestCase(
 
     fun testComments() = parsingShouldSucceed("comments")
 
+    fun testBooleans() = parsingShouldSucceed("booleans")
+
     private fun parsingShouldSucceed(fileName: String) {
         val loadFile = this.loadFile("$fileName.m")
         parseFile(fileName, loadFile)
