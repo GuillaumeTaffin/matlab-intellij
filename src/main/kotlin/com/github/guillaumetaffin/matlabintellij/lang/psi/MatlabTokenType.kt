@@ -61,6 +61,34 @@ object Tokens {
 
     @JvmField
     val GTEQ = Gteq
+
+    @JvmField
+    val PLUS = Plus
+
+    @JvmField
+    val MINUS = Minus
+
+    @JvmField
+    val MUL = Mul
+
+    @JvmField
+    val DIV = Div
+
+    @JvmField
+    val POW = Pow
+
+    @JvmField
+    val EWPOW = EwPow
+
+    @JvmField
+    val EWMUL = EwMul
+
+    @JvmField
+    val EWDIV = EwDiv
+
+    @JvmField
+    val EWLDIV = EwLDiv
+
 }
 
 sealed class MatlabTokenType(debugName: String) :
@@ -163,6 +191,52 @@ data object Gteq : MatlabTokenType("GTEQ") {
     override val highlight: Array<TextAttributesKey>
         get() = AttributeKeys.OPERATOR
 }
+
+data object Plus : MatlabTokenType("PLUS") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Minus : MatlabTokenType("MINUS") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Mul : MatlabTokenType("MUL") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Div : MatlabTokenType("DIV") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Pow : MatlabTokenType("POW") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object EwPow : MatlabTokenType("EWPOW") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object EwMul : MatlabTokenType("EWMUL") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object EwDiv : MatlabTokenType("EWDIV") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object EwLDiv : MatlabTokenType("EWLDIV") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
 
 object AttributeKeys {
     val STRING_LITERAL = keys("STRING", DefaultLanguageHighlighterColors.STRING)

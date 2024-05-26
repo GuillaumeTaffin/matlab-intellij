@@ -16,8 +16,10 @@ class ValidParsingTest : ParsingTestCase(
     fun testComments() = parsingShouldSucceed("comments")
 
     fun testBooleans() = parsingShouldSucceed("booleans")
-    
+
     fun testRelationalOperators() = parsingShouldSucceed("relational_operators")
+
+    fun testArithmeticOperators() = parsingShouldSucceed("arithmetic_operators")
 
     private fun parsingShouldSucceed(fileName: String) {
         val loadFile = this.loadFile("$fileName.m")

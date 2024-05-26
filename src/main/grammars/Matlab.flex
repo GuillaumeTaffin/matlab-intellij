@@ -46,6 +46,15 @@ MULTI_LINE_COMMENT=%\{(.|\n)*?%}
     "<="                  { return LTEQ; }
     ">="                  { return GTEQ; }
     ">"                   { return GT; }
+    "+"                   { return PLUS; }
+    "-"                   { return MINUS; }
+    "*"                   { return MUL; }
+    "/"                   { return DIV; }
+    "^"                   { return POW; }
+    ".^"                  { return EWPOW; }
+    ".*"                  { return EWMUL; }
+    "./"                  { return EWDIV; }
+    ".\\"                 { return EWLDIV; }
 
 }
 
