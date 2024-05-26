@@ -72,14 +72,11 @@ tasks {
         gradleVersion = properties("gradleVersion").get()
     }
 
-    val cleanGen = register<Delete>("cleanGen") {
-        delete(layout.projectDirectory.dir("src/main/gen"))
-    }
-
     generateLexer {
         sourceFile.set(file("src/main/grammars/Matlab.flex"))
         targetOutputDir.set(file("src/main/gen/com/github/guillaumetaffin/matlabintellij/lang"))
-        dependsOn(cleanGen)
+        purgeOldFiles.set(false)
+        mustRunAfter(generateParser)
     }
 
     generateParser {
@@ -87,10 +84,14 @@ tasks {
         targetRootOutputDir.set(file("src/main/gen"))
         pathToParser.set("com/github/guillaumetaffin/matlabintellij/lang/MatlabParser.java")
         pathToPsiRoot.set("com/github/guillaumetaffin/matlabintellij/lang/psi")
-        dependsOn(cleanGen)
+        purgeOldFiles.set(true)
     }
 
-    withType<KotlinCompile> {
+    withType<KotlinCompile>().configureEach {
+        dependsOn(generateLexer, generateParser)
+    }
+
+    withType<Test>().configureEach {
         dependsOn(generateLexer, generateParser)
     }
 

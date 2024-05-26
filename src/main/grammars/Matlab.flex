@@ -25,6 +25,7 @@ INF="Inf"
 NAN="NaN"
 LINE_COMMENT=%.*
 MULTI_LINE_COMMENT=%\{(.|\n)*?%}
+SEMICOLON=";"
 
 %%
 
@@ -39,6 +40,7 @@ MULTI_LINE_COMMENT=%\{(.|\n)*?%}
     {MULTI_LINE_COMMENT}  { return BLOCK_COMMENT; }
     {INF}                 { return INF; }
     {NAN}                 { return NAN; }
+    {SEMICOLON}           { return SEMICOLON; }
 }
 
 [^]                    { return TokenType.BAD_CHARACTER; }

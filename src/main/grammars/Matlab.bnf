@@ -34,7 +34,7 @@
   ]
 }
 
-root ::= statement*
+root ::= (statement (";" statement)*)*
 
 statement ::= STRING_LITERAL
  | number_literal

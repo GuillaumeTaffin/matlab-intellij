@@ -12,7 +12,7 @@
 
 'Line1\nLine2\tTabbed'
 
-"Line1\nLine2\tTabbed"
+"Line1\nLine2\tTabbed";
 
 'This is a backslash: \\'
 
@@ -20,7 +20,7 @@
 
 'Unicode: \u03A9'
 
-"Unicode: \u03A9"
+"Unicode: \u03A9";
 
 'This is line 1 and this is line 2'
 

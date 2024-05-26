@@ -34,6 +34,9 @@ object Tokens {
 
     @JvmField
     val NAN = NanLiteral
+
+    @JvmField
+    val SEMICOLON = Semicolon
 }
 
 sealed class MatlabTokenType(debugName: String) :
@@ -91,8 +94,14 @@ data object BlockComment : MatlabTokenType("BLOCK COMMENT") {
         get() = AttributeKeys.BLOCK_COMMENT
 }
 
+data object Semicolon : MatlabTokenType("SEMICOLON") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.SEMICOLON
+}
+
 object AttributeKeys {
     val STRING_LITERAL = keys("STRING", DefaultLanguageHighlighterColors.STRING)
+    val SEMICOLON = keys("STRING", DefaultLanguageHighlighterColors.SEMICOLON)
     val DECIMAL_LITERAL = keys("DECIMAL", DefaultLanguageHighlighterColors.NUMBER)
     val HEXADECIMAL_LITERAL = keys("HEXADECIMAL", DefaultLanguageHighlighterColors.NUMBER)
     val BINARY_LITERAL = keys("BINARY", DefaultLanguageHighlighterColors.NUMBER)
