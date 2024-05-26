@@ -53,6 +53,8 @@ IDENTIFIER=[a-zA-Z_][a-zA-Z0-9_]*
     "&"                   { return AND; }
     "|"                   { return OR; }
     "="                   { return EQUALS; }
+    "("                   { return LPAREN; }
+    ")"                   { return RPAREN; }
     {STRING_LITERAL}      { return STRING_LITERAL; }
     {DECIMAL_LITERAL}     { return DECIMAL_LITERAL; }
     {HEXADECIMAL_LITERAL} { return HEXADECIMAL_LITERAL; }

@@ -27,6 +27,10 @@ class ValidParsingTest : ParsingTestCase(
 
     fun testVariableReference() = parsingShouldSucceed("variable_reference")
 
+    fun testParensExpressions() = parsingShouldSucceed("parens_expressions")
+
+    fun testMeanCalculation() = parsingShouldSucceed("mean_calculation")
+
 
     private fun parsingShouldSucceed(fileName: String) {
         val loadFile = this.loadFile("$fileName.m")

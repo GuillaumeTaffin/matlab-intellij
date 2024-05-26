@@ -45,6 +45,8 @@
     AND="&"
     OR="|"
     EQUALS="="
+    LPAREN="("
+    RPAREN=")"
     IDENTIFIER="regexp:[a-zA-Z_][a-zA-Z0-9_]*"
     STRING_LITERAL="regexp:'([^']|'')*'|\"([^\"]|\"\")*\""
     DECIMAL_LITERAL="regexp:\b(\d+)(\.\d+)?([eE][+-]?\d+)?\b"
@@ -77,7 +79,7 @@ assign_statement ::= id "=" expr
 id ::= IDENTIFIER
 
 
-private primary_group ::= literal_expr | ref_expr
+private primary_group ::= literal_expr | ref_expr | parens_expr
 private unary_group ::= unary_plus_expr | unary_minus_expr
 private pow_group ::= pow_expr | ewpow_expr
 private mul_group ::= mul_expr | div_expr | ewmul_expr | ewdiv_expr | ewldiv_expr
@@ -88,6 +90,7 @@ private logical_or_group ::= or_expr | oror_expr
 
 literal_expr ::= STRING_LITERAL | number_literal | boolean_literal
 ref_expr ::= id
+parens_expr ::= "(" expr ")"
 
 unary_plus_expr ::= "+" expr
 unary_minus_expr ::= "-" expr

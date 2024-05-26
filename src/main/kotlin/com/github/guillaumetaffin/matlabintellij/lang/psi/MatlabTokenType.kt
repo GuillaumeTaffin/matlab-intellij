@@ -107,6 +107,12 @@ object Tokens {
     @JvmField
     val IDENTIFIER = Identifier
 
+    @JvmField
+    val LPAREN = LeftParen
+
+    @JvmField
+    val RPAREN = RightParen
+
 }
 
 sealed class MatlabTokenType(debugName: String) :
@@ -117,6 +123,17 @@ sealed class MatlabTokenType(debugName: String) :
         return "MatlabTokenType." + super.toString()
     }
 }
+
+data object LeftParen : MatlabTokenType("LPAREN") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.PARENTHESES
+}
+
+data object RightParen : MatlabTokenType("RPAREN") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.PARENTHESES
+}
+
 
 data object StringLiteral : MatlabTokenType("STRING") {
     override val highlight: Array<TextAttributesKey>
@@ -287,6 +304,7 @@ data object Identifier : MatlabTokenType("IDENTIFIER") {
 
 
 object AttributeKeys {
+    val PARENTHESES = keys("PARENTHESES", DefaultLanguageHighlighterColors.PARENTHESES)
     val IDENTIFIER = keys("IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER)
     val STRING_LITERAL = keys("STRING", DefaultLanguageHighlighterColors.STRING)
     val SEMICOLON = keys("SEMICOLON", DefaultLanguageHighlighterColors.SEMICOLON)
