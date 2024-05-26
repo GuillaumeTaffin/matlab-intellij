@@ -17,6 +17,7 @@
   ]
 
   generateTokens=false
+  extends(".*_expr")=expr
 
   tokens = [
     SEMICOLON=";"
@@ -24,6 +25,25 @@
     NAN="NaN"
     TRUE="true"
     FALSE="false"
+    EQ="=="
+    NOT_EQ="~="
+    LTEQ="<="
+    GTEQ=">="
+    LT="<"
+    GT=">"
+    PLUS="+"
+    MINUS="-"
+    MUL="*"
+    DIV="/"
+    POW="^"
+    EWPOW=".^"
+    EWMUL=".*"
+    EWDIV="./"
+    EWLDIV=".\\"
+    AND_AND="&&"
+    OR_OR="||"
+    AND="&"
+    OR="|"
     STRING_LITERAL="regexp:'([^']|'')*'|\"([^\"]|\"\")*\""
     DECIMAL_LITERAL="regexp:\b(\d+)(\.\d+)?([eE][+-]?\d+)?\b"
     HEXADECIMAL_LITERAL="regexp:\b0[xX][0-9a-fA-F]+\b"
@@ -38,10 +58,54 @@
 
 root ::= (statement (";" statement)*)*
 
-statement ::= literal_expr
+statement ::= expr
 
+expr ::= primary_group
+       | unary_group
+       | pow_group
+       | mul_group
+       | add_group
+       | relational_group
+       | logical_and_group
+       | logical_or_group
+
+
+private primary_group ::= literal_expr
+private unary_group ::= unary_plus_expr | unary_minus_expr
+private pow_group ::= pow_expr | ewpow_expr
+private mul_group ::= mul_expr | div_expr | ewmul_expr | ewdiv_expr | ewldiv_expr
+private add_group ::= plus_expr | minus_expr
+private relational_group ::= eq_expr | not_eq_expr | lteq_expr | gteq_expr | lt_expr | gt_expr
+private logical_and_group ::= and_expr | andand_expr
+private logical_or_group ::= or_expr | oror_expr
+
+literal_expr ::= STRING_LITERAL | number_literal | boolean_literal
+
+unary_plus_expr ::= "+" expr
+unary_minus_expr ::= "-" expr
+
+plus_expr ::= expr "+" expr
+minus_expr ::= expr "-" expr
+mul_expr ::= expr "*" expr
+div_expr ::= expr "/" expr
+pow_expr ::= expr "^" expr
+ewpow_expr ::= expr ".^" expr
+ewmul_expr ::= expr ".*" expr
+ewdiv_expr ::= expr "./" expr
+ewldiv_expr ::= expr ".\\" expr
+
+eq_expr ::= expr "==" expr
+not_eq_expr ::= expr "~=" expr
+lteq_expr ::= expr "<=" expr
+gteq_expr ::= expr ">=" expr
+lt_expr ::= expr "<" expr
+gt_expr ::= expr ">" expr
+
+andand_expr ::= expr "&&" expr
+oror_expr ::= expr "||" expr
+and_expr ::= expr "&" expr
+or_expr ::= expr "|" expr
 
 // Literals
-private literal_expr ::= STRING_LITERAL | number_literal | boolean_literal
 private number_literal ::=  DECIMAL_LITERAL | HEXADECIMAL_LITERAL | BINARY_LITERAL | IMAGINARY_LITERAL | "Inf" | "NaN"
 private boolean_literal ::= "true" | "false"

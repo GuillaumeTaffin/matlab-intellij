@@ -40,6 +40,28 @@ MULTI_LINE_COMMENT=%\{(.|\n)*?%}
     ";"                   { return SEMICOLON; }
     "true"                { return TRUE; }
     "false"               { return FALSE; }
+    "=="                  { return EQ; }
+    "~="                  { return NOT_EQ; }
+    "<"                   { return LT; }
+    "<="                  { return LTEQ; }
+    ">="                  { return GTEQ; }
+    ">"                   { return GT; }
+    "+"                   { return PLUS; }
+    "-"                   { return MINUS; }
+    "*"                   { return MUL; }
+    "/"                   { return DIV; }
+    "^"                   { return POW; }
+    ".^"                  { return EWPOW; }
+    ".*"                  { return EWMUL; }
+    "./"                  { return EWDIV; }
+    ".\\"                 { return EWLDIV; }
+    "&&"                  { return AND_AND; }
+    "||"                  { return OR_OR; }
+    "&"                   { return AND; }
+    "|"                   { return OR; }
+    "xor"                 { return XOR; }
+
+
 }
 
 [^]                    { return TokenType.BAD_CHARACTER; }

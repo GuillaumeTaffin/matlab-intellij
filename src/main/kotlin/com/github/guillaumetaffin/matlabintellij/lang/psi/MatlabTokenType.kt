@@ -43,6 +43,67 @@ object Tokens {
 
     @JvmField
     val FALSE = False
+
+    @JvmField
+    val EQ = Eq
+
+    @JvmField
+    val NOT_EQ = NotEq
+
+    @JvmField
+    val LT = Lt
+
+    @JvmField
+    val LTEQ = Lteq
+
+    @JvmField
+    val GT = Gt
+
+    @JvmField
+    val GTEQ = Gteq
+
+    @JvmField
+    val PLUS = Plus
+
+    @JvmField
+    val MINUS = Minus
+
+    @JvmField
+    val MUL = Mul
+
+    @JvmField
+    val DIV = Div
+
+    @JvmField
+    val POW = Pow
+
+    @JvmField
+    val EWPOW = EwPow
+
+    @JvmField
+    val EWMUL = EwMul
+
+    @JvmField
+    val EWDIV = EwDiv
+
+    @JvmField
+    val EWLDIV = EwLDiv
+
+    @JvmField
+    val AND_AND = AndAnd
+
+    @JvmField
+    val OR_OR = OrOr
+
+    @JvmField
+    val AND = And
+
+    @JvmField
+    val OR = Or
+
+    @JvmField
+    val XOR = Xor
+
 }
 
 sealed class MatlabTokenType(debugName: String) :
@@ -115,6 +176,108 @@ data object False : MatlabTokenType("FALSE") {
         get() = AttributeKeys.KEYWORD
 }
 
+
+data object Eq : MatlabTokenType("EQ") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object NotEq : MatlabTokenType("NOT_EQ") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Lt : MatlabTokenType("LT") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Lteq : MatlabTokenType("LTEQ") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Gt : MatlabTokenType("GT") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Gteq : MatlabTokenType("GTEQ") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Plus : MatlabTokenType("PLUS") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Minus : MatlabTokenType("MINUS") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Mul : MatlabTokenType("MUL") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Div : MatlabTokenType("DIV") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Pow : MatlabTokenType("POW") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object EwPow : MatlabTokenType("EWPOW") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object EwMul : MatlabTokenType("EWMUL") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object EwDiv : MatlabTokenType("EWDIV") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object EwLDiv : MatlabTokenType("EWLDIV") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object AndAnd : MatlabTokenType("AND_AND") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object OrOr : MatlabTokenType("OR_OR") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object And : MatlabTokenType("AND") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Or : MatlabTokenType("OR") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Xor : MatlabTokenType("XOR") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+
 object AttributeKeys {
     val STRING_LITERAL = keys("STRING", DefaultLanguageHighlighterColors.STRING)
     val SEMICOLON = keys("STRING", DefaultLanguageHighlighterColors.SEMICOLON)
@@ -125,6 +288,7 @@ object AttributeKeys {
     val KEYWORD = keys("INF", DefaultLanguageHighlighterColors.KEYWORD)
     val LINE_COMMENT = keys("COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
     val BLOCK_COMMENT = keys("BLOCK_COMMENT", DefaultLanguageHighlighterColors.BLOCK_COMMENT)
+    val OPERATOR = keys("OPERATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
 }
 
 private fun keys(text: String, color: TextAttributesKey) = arrayOf(createTextAttributesKey(text, color))
