@@ -55,6 +55,12 @@ MULTI_LINE_COMMENT=%\{(.|\n)*?%}
     ".*"                  { return EWMUL; }
     "./"                  { return EWDIV; }
     ".\\"                 { return EWLDIV; }
+    "&&"                  { return AND_AND; }
+    "||"                  { return OR_OR; }
+    "&"                   { return AND; }
+    "|"                   { return OR; }
+    "xor"                 { return XOR; }
+
 
 }
 

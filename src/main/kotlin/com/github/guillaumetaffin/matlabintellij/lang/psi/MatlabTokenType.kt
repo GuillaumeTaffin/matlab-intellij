@@ -89,6 +89,21 @@ object Tokens {
     @JvmField
     val EWLDIV = EwLDiv
 
+    @JvmField
+    val AND_AND = AndAnd
+
+    @JvmField
+    val OR_OR = OrOr
+
+    @JvmField
+    val AND = And
+
+    @JvmField
+    val OR = Or
+
+    @JvmField
+    val XOR = Xor
+
 }
 
 sealed class MatlabTokenType(debugName: String) :
@@ -233,6 +248,31 @@ data object EwDiv : MatlabTokenType("EWDIV") {
 }
 
 data object EwLDiv : MatlabTokenType("EWLDIV") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object AndAnd : MatlabTokenType("AND_AND") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object OrOr : MatlabTokenType("OR_OR") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object And : MatlabTokenType("AND") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Or : MatlabTokenType("OR") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OPERATOR
+}
+
+data object Xor : MatlabTokenType("XOR") {
     override val highlight: Array<TextAttributesKey>
         get() = AttributeKeys.OPERATOR
 }

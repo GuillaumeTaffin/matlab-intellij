@@ -21,6 +21,8 @@ class ValidParsingTest : ParsingTestCase(
 
     fun testArithmeticOperators() = parsingShouldSucceed("arithmetic_operators")
 
+    fun testLogicalOperators() = parsingShouldSucceed("logical_operators")
+
     private fun parsingShouldSucceed(fileName: String) {
         val loadFile = this.loadFile("$fileName.m")
         parseFile(fileName, loadFile)

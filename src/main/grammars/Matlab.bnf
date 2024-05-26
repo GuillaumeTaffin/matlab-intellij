@@ -40,6 +40,10 @@
     EWMUL=".*"
     EWDIV="./"
     EWLDIV=".\\"
+    AND_AND="&&"
+    OR_OR="||"
+    AND="&"
+    OR="|"
     STRING_LITERAL="regexp:'([^']|'')*'|\"([^\"]|\"\")*\""
     DECIMAL_LITERAL="regexp:\b(\d+)(\.\d+)?([eE][+-]?\d+)?\b"
     HEXADECIMAL_LITERAL="regexp:\b0[xX][0-9a-fA-F]+\b"
@@ -64,6 +68,7 @@ literal_expr ::= STRING_LITERAL | number_literal | boolean_literal
 private number_literal ::=  DECIMAL_LITERAL | HEXADECIMAL_LITERAL | BINARY_LITERAL | IMAGINARY_LITERAL | "Inf" | "NaN"
 private boolean_literal ::= "true" | "false"
 // Operators
-binary_operator ::= relational_operator | arithmetic_operator
+binary_operator ::= relational_operator | arithmetic_operator | logical_operator
 private relational_operator ::= "==" | "~=" | "<=" | ">=" | "<" | ">"
 private arithmetic_operator ::= "+" | "-" | "*" | "/" | ".^" | ".*" | "./" | ".\\" | "^"
+private logical_operator ::= "&&" | "||" | "&" | "|"
