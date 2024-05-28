@@ -113,11 +113,14 @@ object Tokens {
     @JvmField
     val RPAREN = RightParen
 
+    @JvmField
+    val LINE_BREAK = LineBreak
+
 }
 
 sealed class MatlabTokenType(debugName: String) :
     IElementType(debugName, MatlabLanguage) {
-    abstract val highlight: Array<TextAttributesKey>
+    abstract val highlight: Array<TextAttributesKey>?
 
     override fun toString(): String {
         return "MatlabTokenType." + super.toString()
@@ -300,6 +303,11 @@ data object AssignmentOperator : MatlabTokenType("EQUALS") {
 data object Identifier : MatlabTokenType("IDENTIFIER") {
     override val highlight: Array<TextAttributesKey>
         get() = AttributeKeys.IDENTIFIER
+}
+
+data object LineBreak : MatlabTokenType("LINE_BREAK") {
+    override val highlight: Array<TextAttributesKey>?
+        get() = null
 }
 
 

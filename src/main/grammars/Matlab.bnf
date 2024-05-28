@@ -56,13 +56,14 @@
     LINE_COMMENT="regexp:%.*"
     MULTI_LINE_COMMENT="regexp:%\{(.|\n)*?%}"
 
-    WHITESPACE="regexp:\s+"
+    WHITESPACE="regexp:[ \t\x0B\f]+"
+    LINE_BREAK="regexp:[\r\n\u2028\u2029]+"
   ]
 }
 
-root ::= (statement_with_semi | statement)*
+root ::= statement? (statement_separator statement?)*
 
-statement_with_semi ::= statement ";"
+inner left statement_separator ::= ";" LINE_BREAK? | LINE_BREAK
 
 statement ::= assign_statement | expr
 

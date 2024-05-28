@@ -15,7 +15,8 @@ import static com.github.guillaumetaffin.matlabintellij.lang.psi.Tokens.*;
 %eof{  return;
 %eof}
 
-WHITE_SPACE=\s+
+WHITE_SPACE=[ \t\x0B\f]+
+LINE_BREAK=[\r\n\u2028\u2029]+
 STRING_LITERAL='([^']|'')*'|\"([^\"]|\"\")*\"
 DECIMAL_LITERAL=(\d+)(\.\d+)?([eE][+-]?\d+)?
 HEXADECIMAL_LITERAL=0[xX][0-9a-fA-F]+
@@ -64,6 +65,7 @@ IDENTIFIER=[a-zA-Z_][a-zA-Z0-9_]*
     {MULTI_LINE_COMMENT}  { return BLOCK_COMMENT; }
     {IDENTIFIER}          { return IDENTIFIER; }
     {WHITE_SPACE}         { return TokenType.WHITE_SPACE; }
+    {LINE_BREAK}          { return LINE_BREAK; }
 
 
 }

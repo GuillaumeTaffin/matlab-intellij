@@ -23,7 +23,7 @@ class MatlabSyntaxHighlighter : SyntaxHighlighterBase() {
     override fun getHighlightingLexer(): Lexer = MatlabFlexAdapter()
 
     override fun getTokenHighlights(tokenType: IElementType?): Array<TextAttributesKey> = when (tokenType) {
-        is MatlabTokenType -> tokenType.highlight
+        is MatlabTokenType -> tokenType.highlight ?: NO_HIGHLIGHTING
         TokenType.BAD_CHARACTER -> BAD_CHARACTER
         else -> NO_HIGHLIGHTING
     }
