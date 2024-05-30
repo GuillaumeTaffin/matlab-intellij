@@ -4,6 +4,7 @@ import com.github.guillaumetaffin.matlabintellij.lang.parser.MatlabParser
 import com.github.guillaumetaffin.matlabintellij.lang.psi.MatlabFile
 import com.github.guillaumetaffin.matlabintellij.lang.psi.MatlabTokenSets
 import com.github.guillaumetaffin.matlabintellij.lang.psi.MatlabTypes
+import com.github.guillaumetaffin.matlabintellij.lang.psi.WhiteSpace
 import com.intellij.lang.ASTNode
 import com.intellij.lang.ParserDefinition
 import com.intellij.lang.PsiParser
@@ -45,6 +46,9 @@ class MatlabParserDefinition : ParserDefinition {
         return MatlabTypes.Factory.createElement(node)
     }
 
+    override fun getWhitespaceTokens(): TokenSet {
+        return TokenSet.create(WhiteSpace)
+    }
 }
 
 val FILE: IFileElementType = IFileElementType(MatlabLanguage)

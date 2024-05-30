@@ -56,12 +56,12 @@
     LINE_COMMENT="regexp:%.*"
     MULTI_LINE_COMMENT="regexp:%\{(.|\n)*?%}"
 
-    WHITESPACE="regexp:[ \t\x0B\f]+"
+    WHITE_SPACE="regexp:[ \t\x0B\f]+"
     LINE_BREAK="regexp:[\r\n\u2028\u2029]+"
   ]
 }
 
-root ::= statement? (statement_separator statement?)*
+root ::= statement? (whitespace? statement_separator whitespace? statement?)*
 
 inner left statement_separator ::= ";" LINE_BREAK? | LINE_BREAK
 
@@ -76,7 +76,7 @@ expr ::= primary_group
        | logical_and_group
        | logical_or_group
 
-assign_statement ::= id "=" expr
+assign_statement ::= id whitespace? "=" whitespace ? expr
 id ::= IDENTIFIER
 
 
@@ -91,33 +91,34 @@ private logical_or_group ::= or_expr | oror_expr
 
 literal_expr ::= STRING_LITERAL | number_literal | boolean_literal
 ref_expr ::= id
-parens_expr ::= "(" expr ")"
+parens_expr ::= "(" whitespace? expr whitespace? ")"
 
-unary_plus_expr ::= "+" expr
-unary_minus_expr ::= "-" expr
+unary_plus_expr ::= "+" whitespace? expr
+unary_minus_expr ::= "-" whitespace? expr
 
-plus_expr ::= expr "+" expr
-minus_expr ::= expr "-" expr
-mul_expr ::= expr "*" expr
-div_expr ::= expr "/" expr
-pow_expr ::= expr "^" expr
-ewpow_expr ::= expr ".^" expr
-ewmul_expr ::= expr ".*" expr
-ewdiv_expr ::= expr "./" expr
-ewldiv_expr ::= expr ".\\" expr
+plus_expr ::= expr whitespace? "+" whitespace? expr
+minus_expr ::= expr whitespace? "-" whitespace? expr
+mul_expr ::= expr whitespace? "*" whitespace? expr
+div_expr ::= expr whitespace? "/" whitespace? expr
+pow_expr ::= expr whitespace? "^" whitespace? expr
+ewpow_expr ::= expr whitespace? ".^" whitespace? expr
+ewmul_expr ::= expr whitespace? ".*" whitespace? expr
+ewdiv_expr ::= expr whitespace? "./" whitespace? expr
+ewldiv_expr ::= expr whitespace? ".\\" whitespace? expr
 
-eq_expr ::= expr "==" expr
-not_eq_expr ::= expr "~=" expr
-lteq_expr ::= expr "<=" expr
-gteq_expr ::= expr ">=" expr
-lt_expr ::= expr "<" expr
-gt_expr ::= expr ">" expr
+eq_expr ::= expr whitespace? "==" whitespace? expr
+not_eq_expr ::= expr whitespace? "~=" whitespace? expr
+lteq_expr ::= expr whitespace? "<=" whitespace? expr
+gteq_expr ::= expr whitespace? ">=" whitespace? expr
+lt_expr ::= expr whitespace? "<" whitespace? expr
+gt_expr ::= expr whitespace? ">" whitespace? expr
 
-andand_expr ::= expr "&&" expr
-oror_expr ::= expr "||" expr
-and_expr ::= expr "&" expr
-or_expr ::= expr "|" expr
+andand_expr ::= expr whitespace? "&&" whitespace? expr
+oror_expr ::= expr whitespace? "||" whitespace? expr
+and_expr ::= expr whitespace? "&" whitespace? expr
+or_expr ::= expr whitespace? "|" whitespace? expr
 
 // Literals
 private number_literal ::=  DECIMAL_LITERAL | HEXADECIMAL_LITERAL | BINARY_LITERAL | IMAGINARY_LITERAL | "Inf" | "NaN"
 private boolean_literal ::= "true" | "false"
+private whitespace ::= WHITE_SPACE

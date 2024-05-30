@@ -64,7 +64,7 @@ IDENTIFIER=[a-zA-Z_][a-zA-Z0-9_]*
     {LINE_COMMENT}        { return LINE_COMMENT; }
     {MULTI_LINE_COMMENT}  { return BLOCK_COMMENT; }
     {IDENTIFIER}          { return IDENTIFIER; }
-    {WHITE_SPACE}         { return TokenType.WHITE_SPACE; }
+    {WHITE_SPACE}         { return WHITE_SPACE; }
     {LINE_BREAK}          { return LINE_BREAK; }
 
 

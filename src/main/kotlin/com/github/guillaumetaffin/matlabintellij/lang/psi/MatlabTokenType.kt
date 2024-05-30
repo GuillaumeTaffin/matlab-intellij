@@ -116,6 +116,9 @@ object Tokens {
     @JvmField
     val LINE_BREAK = LineBreak
 
+    @JvmField
+    val WHITE_SPACE = WhiteSpace
+
 }
 
 sealed class MatlabTokenType(debugName: String) :
@@ -306,6 +309,11 @@ data object Identifier : MatlabTokenType("IDENTIFIER") {
 }
 
 data object LineBreak : MatlabTokenType("LINE_BREAK") {
+    override val highlight: Array<TextAttributesKey>?
+        get() = null
+}
+
+data object WhiteSpace : MatlabTokenType("LINE_BREAK") {
     override val highlight: Array<TextAttributesKey>?
         get() = null
 }
