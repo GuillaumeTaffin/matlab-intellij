@@ -31,6 +31,8 @@ class ValidParsingTest : ParsingTestCase(
 
     fun testMeanCalculation() = parsingShouldSucceed("mean_calculation")
 
+    fun testSaveWorkspaceData() = parsingShouldSucceed("save_workspace_data")
+
 
     private fun parsingShouldSucceed(fileName: String) {
         val loadFile = this.loadFile("$fileName.m")

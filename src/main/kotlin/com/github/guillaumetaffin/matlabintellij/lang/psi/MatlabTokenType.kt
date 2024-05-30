@@ -119,6 +119,105 @@ object Tokens {
     @JvmField
     val WHITE_SPACE = WhiteSpace
 
+    @JvmField
+    val DOT = Dot
+
+    @JvmField
+    val COMMA = Comma
+
+    @JvmField
+    val COLON = Colon
+
+    @JvmField
+    val SINGLE_QUOTE = SingleQuote
+
+    @JvmField
+    val DOUBLE_QUOTE = DoubleQuote
+
+    @JvmField
+    val LBRACKET = LBracket
+
+    @JvmField
+    val RBRACKET = RBracket
+
+    @JvmField
+    val LBRACE = LBrace
+
+    @JvmField
+    val RBRACE = RBrace
+
+    @JvmField
+    val TILDE = Tilde
+
+    @JvmField
+    val AT = At
+
+    @JvmField
+    val BANG = Bang
+
+    @JvmField
+    val BREAK = Break
+
+    @JvmField
+    val CASE = Case
+
+    @JvmField
+    val CATCH = Catch
+
+    @JvmField
+    val CLASSDEF = Classdef
+
+    @JvmField
+    val CONTINUE = Continue
+
+    @JvmField
+    val ELSE = Else
+
+    @JvmField
+    val ELSEIF = Elseif
+
+    @JvmField
+    val END = End
+
+    @JvmField
+    val FOR = For
+
+    @JvmField
+    val FUNCTION = Function
+
+    @JvmField
+    val GLOBAL = Global
+
+    @JvmField
+    val IF = If
+
+    @JvmField
+    val OTHERWISE = Otherwise
+
+    @JvmField
+    val PARFOR = Parfor
+
+    @JvmField
+    val PERSISTENT = Persistent
+
+    @JvmField
+    val RETURN = Return
+
+    @JvmField
+    val SPMD = Spmd
+
+    @JvmField
+    val SWITCH = Switch
+
+    @JvmField
+    val TRY = Try
+
+    @JvmField
+    val WHILE = While
+
+    @JvmField
+    val BACKSLASH = Backslash
+
 }
 
 sealed class MatlabTokenType(debugName: String) :
@@ -313,9 +412,174 @@ data object LineBreak : MatlabTokenType("LINE_BREAK") {
         get() = null
 }
 
-data object WhiteSpace : MatlabTokenType("LINE_BREAK") {
+data object WhiteSpace : MatlabTokenType("WHITE_SPACE") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.DOT
+}
+
+data object Dot : MatlabTokenType("DOT") {
     override val highlight: Array<TextAttributesKey>?
         get() = null
+}
+
+data object Comma : MatlabTokenType("COMMA") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.COMMA
+}
+
+data object Colon : MatlabTokenType("COLON") {
+    override val highlight: Array<TextAttributesKey>?
+        get() = null
+}
+
+data object SingleQuote : MatlabTokenType("SINGLE_QUOTE") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.SINGLE_QUOTE
+}
+
+data object DoubleQuote : MatlabTokenType("DOUBLE_QUOTE") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.DOUBLE_QUOTE
+}
+
+data object LBracket : MatlabTokenType("LBRACKET") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.LBRACKET
+}
+
+data object RBracket : MatlabTokenType("RBRACKET") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.RBRACKET
+}
+
+data object LBrace : MatlabTokenType("LBRACE") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.LBRACE
+}
+
+data object RBrace : MatlabTokenType("RBRACE") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.RBRACE
+}
+
+data object Tilde : MatlabTokenType("TILDE") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.TILDE
+}
+
+data object At : MatlabTokenType("AT") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.AT
+}
+
+data object Bang : MatlabTokenType("BANG") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.BANG
+}
+
+data object Break : MatlabTokenType("BREAK") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.BREAK
+}
+
+data object Case : MatlabTokenType("CASE") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.CASE
+}
+
+data object Catch : MatlabTokenType("CATCH") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.CATCH
+}
+
+data object Classdef : MatlabTokenType("CLASSDEF") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.CLASSDEF
+}
+
+data object Continue : MatlabTokenType("CONTINUE") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.CONTINUE
+}
+
+data object Else : MatlabTokenType("ELSE") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.ELSE
+}
+
+data object Elseif : MatlabTokenType("ELSEIF") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.ELSEIF
+}
+
+data object End : MatlabTokenType("END") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.END
+}
+
+data object For : MatlabTokenType("FOR") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.FOR
+}
+
+data object Function : MatlabTokenType("FUNCTION") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.FUNCTION
+}
+
+data object Global : MatlabTokenType("GLOBAL") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.GLOBAL
+}
+
+data object If : MatlabTokenType("IF") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.IF
+}
+
+data object Otherwise : MatlabTokenType("OTHERWISE") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.OTHERWISE
+}
+
+data object Parfor : MatlabTokenType("PARFOR") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.PARFOR
+}
+
+data object Persistent : MatlabTokenType("PERSISTENT") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.PERSISTENT
+}
+
+data object Return : MatlabTokenType("RETURN") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.RETURN
+}
+
+data object Spmd : MatlabTokenType("SPMD") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.SPMD
+}
+
+data object Switch : MatlabTokenType("SWITCH") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.SWITCH
+}
+
+data object Try : MatlabTokenType("TRY") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.TRY
+}
+
+data object While : MatlabTokenType("WHILE") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.WHILE
+}
+
+data object Backslash : MatlabTokenType("BACKSLASH") {
+    override val highlight: Array<TextAttributesKey>
+        get() = AttributeKeys.BACKSLASH
 }
 
 
@@ -332,6 +596,39 @@ object AttributeKeys {
     val LINE_COMMENT = keys("COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
     val BLOCK_COMMENT = keys("BLOCK_COMMENT", DefaultLanguageHighlighterColors.BLOCK_COMMENT)
     val OPERATOR = keys("OPERATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
+    val DOT = keys("DOT", DefaultLanguageHighlighterColors.DOT)
+    val COMMA = keys("COMMA", DefaultLanguageHighlighterColors.COMMA)
+    val SINGLE_QUOTE = keys("SINGLE_QUOTE", DefaultLanguageHighlighterColors.STRING)
+    val DOUBLE_QUOTE = keys("DOUBLE_QUOTE", DefaultLanguageHighlighterColors.STRING)
+    val LBRACKET = keys("LBRACKET", DefaultLanguageHighlighterColors.BRACKETS)
+    val RBRACKET = keys("RBRACKET", DefaultLanguageHighlighterColors.BRACKETS)
+    val LBRACE = keys("LBRACE", DefaultLanguageHighlighterColors.BRACES)
+    val RBRACE = keys("RBRACE", DefaultLanguageHighlighterColors.BRACES)
+    val TILDE = keys("TILDE", DefaultLanguageHighlighterColors.OPERATION_SIGN)
+    val AT = keys("AT", DefaultLanguageHighlighterColors.MARKUP_TAG)
+    val BANG = keys("BANG", DefaultLanguageHighlighterColors.OPERATION_SIGN)
+    val BREAK = keys("BREAK", DefaultLanguageHighlighterColors.KEYWORD)
+    val CASE = keys("CASE", DefaultLanguageHighlighterColors.KEYWORD)
+    val CATCH = keys("CATCH", DefaultLanguageHighlighterColors.KEYWORD)
+    val CLASSDEF = keys("CLASSDEF", DefaultLanguageHighlighterColors.KEYWORD)
+    val CONTINUE = keys("CONTINUE", DefaultLanguageHighlighterColors.KEYWORD)
+    val ELSE = keys("ELSE", DefaultLanguageHighlighterColors.KEYWORD)
+    val ELSEIF = keys("ELSEIF", DefaultLanguageHighlighterColors.KEYWORD)
+    val END = keys("END", DefaultLanguageHighlighterColors.KEYWORD)
+    val FOR = keys("FOR", DefaultLanguageHighlighterColors.KEYWORD)
+    val FUNCTION = keys("FUNCTION", DefaultLanguageHighlighterColors.KEYWORD)
+    val GLOBAL = keys("GLOBAL", DefaultLanguageHighlighterColors.KEYWORD)
+    val IF = keys("IF", DefaultLanguageHighlighterColors.KEYWORD)
+    val OTHERWISE = keys("OTHERWISE", DefaultLanguageHighlighterColors.KEYWORD)
+    val PARFOR = keys("PARFOR", DefaultLanguageHighlighterColors.KEYWORD)
+    val PERSISTENT = keys("PERSISTENT", DefaultLanguageHighlighterColors.KEYWORD)
+    val RETURN = keys("RETURN", DefaultLanguageHighlighterColors.KEYWORD)
+    val SPMD = keys("SPMD", DefaultLanguageHighlighterColors.KEYWORD)
+    val SWITCH = keys("SWITCH", DefaultLanguageHighlighterColors.KEYWORD)
+    val TRY = keys("TRY", DefaultLanguageHighlighterColors.KEYWORD)
+    val WHILE = keys("WHILE", DefaultLanguageHighlighterColors.KEYWORD)
+    val BACKSLASH = keys("BACKSLASH", DefaultLanguageHighlighterColors.OPERATION_SIGN)
+
 }
 
 private fun keys(text: String, color: TextAttributesKey) = arrayOf(createTextAttributesKey(text, color))

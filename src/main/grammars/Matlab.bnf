@@ -47,6 +47,39 @@
     EQUALS="="
     LPAREN="("
     RPAREN=")"
+    DOT="."
+    COMMA=","
+    COLON=":"
+    SINGLE_QUOTE="'"
+    DOUBLE_WOTE="\""
+    LBRACKET="["
+    RBRACKET="]"
+    LBRACE="{"
+    RBRACE="}"
+    TILDE="~"
+    AT="@"
+    BANG="!"
+    BREAK="break"
+    CASE="case"
+    CATCH="catch"
+    CLASSDEF="classdef"
+    CONTINUE="continue"
+    ELSE="else"
+    ELSEIF="elseif"
+    END="end"
+    FOR="for"
+    FUNCTION="function"
+    GLOBAL="global"
+    IF="if"
+    OTHERWISE="otherwise"
+    PARFOR="parfor"
+    PERSISTENT="persistent"
+    RETURN="return"
+    SPMD="spmd"
+    SWITCH="switch"
+    TRY="try"
+    WHILE="while"
+    BACKSLASH="\\"
     IDENTIFIER="regexp:[a-zA-Z_][a-zA-Z0-9_]*"
     STRING_LITERAL="regexp:'([^']|'')*'|\"([^\"]|\"\")*\""
     DECIMAL_LITERAL="regexp:\b(\d+)(\.\d+)?([eE][+-]?\d+)?\b"
@@ -65,7 +98,9 @@ root ::= statement? (whitespace? statement_separator whitespace? statement?)*
 
 inner left statement_separator ::= ";" LINE_BREAK? | LINE_BREAK
 
-statement ::= assign_statement | expr
+statement ::= assign_statement
+        | function_command_invoke_statement
+        | expr
 
 expr ::= primary_group
        | unary_group
@@ -78,6 +113,12 @@ expr ::= primary_group
 
 assign_statement ::= id whitespace? "=" whitespace ? expr
 id ::= IDENTIFIER
+function_command_invoke_statement ::= ref_expr whitespace !("=") whitespace? word (whitespace word)*
+word ::= any_text+
+private any_text::= id | literal_expr | function_invoke_included_symbols
+function_invoke_included_symbols ::= "(" | ")" | "^" | "=" | "<" | ">" | "|" | "&" | "~"
+    | "break" | "case" | "catch" | "classdef" | "continue" | "else" | "elseif" | "end" | "for" | "function" | "global" | "if" | "otherwise" | "parfor" | "persistent" | "return" | "spmd" | "switch" | "try" | "while"
+    | "true" | "false" | "NaN" | "Inf" | "+" | "-" | "*" | "/" | "\\" | "."| ".*" | "./" | ".\\" | "==" | "~=" | "<=" | ">=" "&&" | "||" | "," | ";" | ":" | "'" | "[" | "]" | "{" | "}" | "@" | "!"
 
 
 private primary_group ::= literal_expr | ref_expr | parens_expr
