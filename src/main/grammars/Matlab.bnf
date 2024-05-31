@@ -113,7 +113,7 @@ expr ::= parens_expr
        | unary_group
        | primary_group
 
-assign_statement ::= ref_call_expr whitespace? "=" whitespace? expr
+assign_statement ::= (multi_id_array | ref_call_expr) whitespace? "=" whitespace? expr
 id ::= IDENTIFIER
 function_command_invoke_statement ::= ref_id whitespace !("=" | parens_expr) whitespace? word (whitespace word)*
 word ::= any_text+
@@ -121,6 +121,9 @@ private any_text::= id | literal_expr | function_invoke_included_symbols
 function_invoke_included_symbols ::= "(" | ")" | "^" | "=" | "<" | ">" | "|" | "&" | "~"
     | "break" | "case" | "catch" | "classdef" | "continue" | "else" | "elseif" | "end" | "for" | "function" | "global" | "if" | "otherwise" | "parfor" | "persistent" | "return" | "spmd" | "switch" | "try" | "while"
     | "true" | "false" | "NaN" | "Inf" | "+" | "-" | "*" | "/" | "\\" | "."| ".*" | "./" | ".\\" | "==" | "~=" | "<=" | ">=" "&&" | "||" | "," | ";" | ":" | "'" | "[" | "]" | "{" | "}" | "@" | "!"
+
+multi_id_array ::= "[" whitespace? multi_id (whitespace? ","? whitespace? multi_id)* whitespace? "]"
+multi_id ::= id | "~"
 
 
 private primary_group ::= literal_expr | ref_call_expr | array_expr
