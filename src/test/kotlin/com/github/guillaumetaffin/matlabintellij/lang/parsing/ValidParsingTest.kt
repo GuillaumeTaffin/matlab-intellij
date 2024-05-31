@@ -37,6 +37,8 @@ class ValidParsingTest : ParsingTestCase(
 
     fun testArrays() = parsingShouldSucceed("arrays")
 
+    fun testRanges() = parsingShouldSucceed("ranges")
+
 
     private fun parsingShouldSucceed(fileName: String) {
         val loadFile = this.loadFile("$fileName.m")

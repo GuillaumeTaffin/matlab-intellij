@@ -17,7 +17,7 @@ import static com.github.guillaumetaffin.matlabintellij.lang.psi.Tokens.*;
 
 WHITE_SPACE=[ \t\x0B\f]+
 LINE_BREAK=[\r\n\u2028\u2029]+
-STRING_LITERAL='([^']|'')*'|\"([^\"]|\"\")*\"
+STRING_LITERAL='([^'\r\n\u2028\u2029]|'')*'|\"([^\"\r\n\u2028\u2029]|\"\")*\"
 DECIMAL_LITERAL=(\d+)(\.\d+)?([eE][+-]?\d+)?
 HEXADECIMAL_LITERAL=0[xX][0-9a-fA-F]+
 BINARY_LITERAL=0[bB][01]+
