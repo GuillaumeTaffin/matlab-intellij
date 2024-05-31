@@ -102,14 +102,16 @@ statement ::= assign_statement
         | function_command_invoke_statement
         | expr
 
-expr ::= primary_group
-       | unary_group
-       | pow_group
-       | mul_group
-       | add_group
+expr ::= parens_expr
        | relational_group
        | logical_and_group
        | logical_or_group
+       | add_group
+       | mul_group
+       | pow_group
+       | unary_group
+       | primary_group
+       | ref_expr
 
 assign_statement ::= id whitespace? "=" whitespace ? expr
 id ::= IDENTIFIER
@@ -121,7 +123,7 @@ function_invoke_included_symbols ::= "(" | ")" | "^" | "=" | "<" | ">" | "|" | "
     | "true" | "false" | "NaN" | "Inf" | "+" | "-" | "*" | "/" | "\\" | "."| ".*" | "./" | ".\\" | "==" | "~=" | "<=" | ">=" "&&" | "||" | "," | ";" | ":" | "'" | "[" | "]" | "{" | "}" | "@" | "!"
 
 
-private primary_group ::= literal_expr | ref_expr | parens_expr | function_call_expr
+private primary_group ::= literal_expr | function_call_expr
 private unary_group ::= unary_plus_expr | unary_minus_expr
 private pow_group ::= pow_expr | ewpow_expr
 private mul_group ::= mul_expr | div_expr | ewmul_expr | ewdiv_expr | ewldiv_expr
