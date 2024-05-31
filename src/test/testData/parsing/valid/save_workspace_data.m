@@ -10,3 +10,10 @@ save toto.mat
 save *mdr =dsa
 
 save +2
+
+clear
+
+load datafile.mat
+
+clc
+

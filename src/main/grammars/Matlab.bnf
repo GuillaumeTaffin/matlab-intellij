@@ -113,7 +113,7 @@ expr ::= primary_group
 
 assign_statement ::= id whitespace? "=" whitespace ? expr
 id ::= IDENTIFIER
-function_command_invoke_statement ::= ref_expr whitespace !("=") whitespace? word (whitespace word)*
+function_command_invoke_statement ::= ref_expr whitespace !("=" | parens_expr) whitespace? word (whitespace word)*
 word ::= any_text+
 private any_text::= id | literal_expr | function_invoke_included_symbols
 function_invoke_included_symbols ::= "(" | ")" | "^" | "=" | "<" | ">" | "|" | "&" | "~"
@@ -121,7 +121,7 @@ function_invoke_included_symbols ::= "(" | ")" | "^" | "=" | "<" | ">" | "|" | "
     | "true" | "false" | "NaN" | "Inf" | "+" | "-" | "*" | "/" | "\\" | "."| ".*" | "./" | ".\\" | "==" | "~=" | "<=" | ">=" "&&" | "||" | "," | ";" | ":" | "'" | "[" | "]" | "{" | "}" | "@" | "!"
 
 
-private primary_group ::= literal_expr | ref_expr | parens_expr
+private primary_group ::= literal_expr | ref_expr | parens_expr | function_call_expr
 private unary_group ::= unary_plus_expr | unary_minus_expr
 private pow_group ::= pow_expr | ewpow_expr
 private mul_group ::= mul_expr | div_expr | ewmul_expr | ewdiv_expr | ewldiv_expr
@@ -133,6 +133,8 @@ private logical_or_group ::= or_expr | oror_expr
 literal_expr ::= STRING_LITERAL | number_literal | boolean_literal
 ref_expr ::= id
 parens_expr ::= "(" whitespace? expr whitespace? ")"
+function_call_expr ::= ref_expr whitespace? "(" whitespace? function_call_args whitespace? ")"
+function_call_args ::= expr ( whitespace? "," whitespace? expr )*
 
 unary_plus_expr ::= "+" whitespace? expr
 unary_minus_expr ::= "-" whitespace? expr

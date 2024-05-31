@@ -33,6 +33,8 @@ class ValidParsingTest : ParsingTestCase(
 
     fun testSaveWorkspaceData() = parsingShouldSucceed("save_workspace_data")
 
+    fun testFunctionCall() = parsingShouldSucceed("function_call")
+
 
     private fun parsingShouldSucceed(fileName: String) {
         val loadFile = this.loadFile("$fileName.m")
