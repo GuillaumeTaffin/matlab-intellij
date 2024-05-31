@@ -106,16 +106,16 @@ expr ::= parens_expr
        | relational_group
        | logical_and_group
        | logical_or_group
+       | range_expr
        | add_group
        | mul_group
        | pow_group
        | unary_group
        | primary_group
-       | ref_expr
 
-assign_statement ::= id whitespace? "=" whitespace ? expr
+assign_statement ::= ref_call_expr whitespace? "=" whitespace? expr
 id ::= IDENTIFIER
-function_command_invoke_statement ::= ref_expr whitespace !("=" | parens_expr) whitespace? word (whitespace word)*
+function_command_invoke_statement ::= ref_id whitespace !("=" | parens_expr) whitespace? word (whitespace word)*
 word ::= any_text+
 private any_text::= id | literal_expr | function_invoke_included_symbols
 function_invoke_included_symbols ::= "(" | ")" | "^" | "=" | "<" | ">" | "|" | "&" | "~"
@@ -123,7 +123,7 @@ function_invoke_included_symbols ::= "(" | ")" | "^" | "=" | "<" | ">" | "|" | "
     | "true" | "false" | "NaN" | "Inf" | "+" | "-" | "*" | "/" | "\\" | "."| ".*" | "./" | ".\\" | "==" | "~=" | "<=" | ">=" "&&" | "||" | "," | ";" | ":" | "'" | "[" | "]" | "{" | "}" | "@" | "!"
 
 
-private primary_group ::= literal_expr | ref_call_expr | array_expr | range_expr
+private primary_group ::= literal_expr | ref_call_expr | array_expr
 private unary_group ::= unary_plus_expr | unary_minus_expr | transpose_expr
 private pow_group ::= pow_expr | ewpow_expr
 private mul_group ::= mul_expr | div_expr | ewmul_expr | ewdiv_expr | ewldiv_expr
@@ -132,10 +132,10 @@ private relational_group ::= eq_expr | not_eq_expr | lteq_expr | gteq_expr | lt_
 private logical_and_group ::= and_expr | andand_expr
 private logical_or_group ::= or_expr | oror_expr
 
-literal_expr ::= STRING_LITERAL | number_literal | boolean_literal
-ref_expr ::= id
+literal_expr ::= STRING_LITERAL | number_literal | boolean_literal | "end" | ":"
+ref_id ::= id
 parens_expr ::= "(" whitespace? expr whitespace? ")"
-ref_call_expr ::= ref_expr whitespace? "(" whitespace? function_call_args whitespace? ")"
+ref_call_expr ::= ref_id (whitespace? "(" whitespace? function_call_args whitespace? ")")?
 function_call_args ::= expr ( whitespace? "," whitespace? expr )*
 array_expr ::= "[" whitespace? expr (whitespace? ("," | ";")? whitespace? expr)* whitespace? "]"
 range_expr ::= expr whitespace? ":" whitespace? expr (whitespace? ":" whitespace? expr)?
