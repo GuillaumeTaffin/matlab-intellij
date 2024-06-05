@@ -18,6 +18,7 @@
 
   generateTokens=false
   extends(".*_expr")=expr
+  extends(".*_statement")=statement
 
   tokens = [
     SEMICOLON=";"
@@ -80,6 +81,7 @@
     TRY="try"
     WHILE="while"
     BACKSLASH="\\"
+    THREE_DOTS="..."
     IDENTIFIER="regexp:[a-zA-Z_][a-zA-Z0-9_]*"
     STRING_LITERAL="regexp:'([^']|'')*'|\"([^\"]|\"\")*\""
     DECIMAL_LITERAL="regexp:\b(\d+)(\.\d+)?([eE][+-]?\d+)?\b"
@@ -94,13 +96,17 @@
   ]
 }
 
-root ::= statement? (whitespace? statement_separator whitespace? statement?)*
+root ::= script_statement* statement?
 
-inner left statement_separator ::= ";" LINE_BREAK? | LINE_BREAK
+
+script_statement ::= whitespace? statement? whitespace? statement_separator
+
+statement_separator ::= ";" whitespace? LINE_BREAK? | LINE_BREAK
 
 statement ::= assign_statement
+        | if_statement
         | function_command_invoke_statement
-        | expr
+        | (!"end" expr)
 
 expr ::= parens_expr
        | relational_group
@@ -125,8 +131,17 @@ function_invoke_included_symbols ::= "(" | ")" | "^" | "=" | "<" | ">" | "|" | "
 multi_id_array ::= "[" whitespace? multi_id (whitespace? ","? whitespace? multi_id)* whitespace? "]"
 multi_id ::= id | "~"
 
+if_statement ::= if_condition if_block else_if_clause* else_clause? block_end
+if_block ::= script_statement*
+block_end ::= whitespace? "end"
+if_condition ::= "if" whitespace? expr whitespace? statement_separator
+else_if_clause ::= "elseif" else_if_block
+else_if_block ::= script_statement*
+else_clause ::= "else" else_block
+else_block ::= script_statement*
 
-private primary_group ::= literal_expr | ref_call_expr | array_expr
+
+private primary_group ::= literal_expr | ref_call_expr | array_expr | continuation_expr
 private unary_group ::= unary_plus_expr | unary_minus_expr | transpose_expr
 private pow_group ::= pow_expr | ewpow_expr
 private mul_group ::= mul_expr | div_expr | ewmul_expr | ewdiv_expr | ewldiv_expr
@@ -142,6 +157,7 @@ ref_call_expr ::= ref_id (whitespace? "(" whitespace? function_call_args whitesp
 function_call_args ::= expr ( whitespace? "," whitespace? expr )*
 array_expr ::= "[" whitespace? expr (whitespace? ("," | ";")? whitespace? expr)* whitespace? "]"
 range_expr ::= expr whitespace? ":" whitespace? expr (whitespace? ":" whitespace? expr)?
+continuation_expr ::= expr whitespace? "..." whitespace? LINE_BREAK whitespace? expr
 
 unary_plus_expr ::= "+" whitespace? expr
 unary_minus_expr ::= "-" whitespace? expr

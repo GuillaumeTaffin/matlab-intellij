@@ -89,6 +89,7 @@ IDENTIFIER=[a-zA-Z_][a-zA-Z0-9_]*
     "try"                 { return TRY; }
     "while"               { return WHILE; }
     "\\"                  { return BACKSLASH; }
+    "..."                 { return THREE_DOTS; }
 
     {STRING_LITERAL}      { return STRING_LITERAL; }
     {DECIMAL_LITERAL}     { return DECIMAL_LITERAL; }

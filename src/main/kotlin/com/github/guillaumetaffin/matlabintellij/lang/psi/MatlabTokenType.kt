@@ -218,6 +218,9 @@ object Tokens {
     @JvmField
     val BACKSLASH = Backslash
 
+    @JvmField
+    val THREE_DOTS = ThreeDots
+
 }
 
 sealed class MatlabTokenType(debugName: String) :
@@ -580,6 +583,11 @@ data object While : MatlabTokenType("WHILE") {
 data object Backslash : MatlabTokenType("BACKSLASH") {
     override val highlight: Array<TextAttributesKey>
         get() = AttributeKeys.BACKSLASH
+}
+
+data object ThreeDots : MatlabTokenType("THREE_DOTS") {
+    override val highlight: Array<TextAttributesKey>?
+        get() = null
 }
 
 

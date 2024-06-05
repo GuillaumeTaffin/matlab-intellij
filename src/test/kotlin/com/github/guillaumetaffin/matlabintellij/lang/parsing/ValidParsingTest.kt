@@ -41,6 +41,8 @@ class ValidParsingTest : ParsingTestCase(
 
     fun testMultiOutputAssign() = parsingShouldSucceed("multi_output_assign")
 
+    fun testIfStatements() = parsingShouldSucceed("if_statements")
+
 
     private fun parsingShouldSucceed(fileName: String) {
         val loadFile = this.loadFile("$fileName.m")
