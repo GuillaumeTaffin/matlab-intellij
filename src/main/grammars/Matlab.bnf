@@ -105,6 +105,7 @@ statement_separator ::= ";" whitespace? LINE_BREAK? | LINE_BREAK
 
 statement ::= assign_statement
         | if_statement
+        | for_statement
         | function_command_invoke_statement
         | (!"end" expr)
 
@@ -140,6 +141,9 @@ else_if_block ::= script_statement*
 else_clause ::= "else" else_block
 else_block ::= script_statement*
 
+for_statement ::= for_condition for_block block_end
+for_condition ::= "for" whitespace? assign_statement whitespace? statement_separator
+for_block ::= script_statement*
 
 private primary_group ::= literal_expr | ref_call_expr | array_expr | continuation_expr
 private unary_group ::= unary_plus_expr | unary_minus_expr | transpose_expr

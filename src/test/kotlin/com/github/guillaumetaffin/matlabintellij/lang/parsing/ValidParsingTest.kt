@@ -43,6 +43,8 @@ class ValidParsingTest : ParsingTestCase(
 
     fun testIfStatements() = parsingShouldSucceed("if_statements")
 
+    fun testForStatements() = parsingShouldSucceed("for_loop")
+
 
     private fun parsingShouldSucceed(fileName: String) {
         val loadFile = this.loadFile("$fileName.m")
